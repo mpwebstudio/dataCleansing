@@ -1,0 +1,55 @@
+﻿@using data_validation.net.Web.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="row" style="background-color:#0b2025; height:535px; margin-top: -50px;">
+
+    <div class="container">
+
+        <div class="col-lg-2 loginForm">
+            
+            <div class="text-center" style="padding-top:10px;"><h2 class="fontFamily">Log in</h2></div>
+            
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group has-feedback">
+                    <label class="sr-only" for="username">User name</label>
+                    
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @id = "userName", @placeholder = "User Name" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                    
+                    
+                    <span class="form-control-feedback"><i class="fa fa-at"></i></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+                    <span class="form-control-feedback"><i class="fa fa-lock"></i></span>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="check-holder">
+                    @if(Html.ViewData.ModelState.IsValid)
+                    { 
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    <span>Remember me</span>
+                    }
+                    else
+                    {
+                        <div style="color:red;font-size:12px;">@Html.ValidationSummary()</div>
+                    }
+                </div>
+                <br />
+                <input type="submit" class="btn btn-lg btn-block btn-blue submitter fontFamily" style="color:#fff" value="Log In">
+                <br />
+                <a href="/Account/Register" class="btn btn-lg btn-block btn-green submitter"> Create an account </a>
+            }
+            <br />
+        </div>
+    </div>
+</div>
+

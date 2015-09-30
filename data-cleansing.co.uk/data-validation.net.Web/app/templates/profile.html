@@ -1,0 +1,73 @@
+﻿
+    <div class="leftPart">
+        <div class="leftSide" style="float:left">
+            <div class="userPicture">
+                <i class="glyphicon glyphicon-user"></i>
+            </div>
+            <div class="edit">
+                <span>
+                    <a href="/Account/Manage" class="btn btn-default">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        Edit password
+                    </a>
+                </span>
+                <span>
+                    <a href="#/editUser" class="btn btn-default rigPart">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        Edit information
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="rightSide" style="float:right" ng-controller="ProfileController">
+            <div class="userInf">
+                First name: {{FirstName}}<br />
+                Surname: {{SurName}}<br />
+                Email: {{Email}}<br />
+                Telephone: {{Telephone}}<br />
+                Web Page: {{WebPage}}
+
+            </div>
+        </div>
+    </div>
+    <div class="middle">
+    </div>
+    <div class="rightPart" >
+        <div class="leftSide" style="float:left">
+            <div class="credits" ng-controller="CreditsController">
+                <div class="units">
+                    <div class="numberCircle">{{Credits}}<div style="font-size:18px; padding-top:-5px;">credits</div></div>
+                </div>
+                Credits Expire: <br />
+                <strong>{{DateExpire.substr(6,13) | date:'dd/MM/yyyy' }}</strong>
+                <div class="edit">
+                    <a href="#/topUp" class="btnTopUp btn-default">
+                        <i class="glyphicon glyphicon-refresh"></i>
+                        Top Up
+                    </a>
+                </div>
+                <div class="edit">
+                    <a href="#/invoice" class="btnTopUp btn-default">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        Invoices
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="rightSide" style="float:right">
+        <div class="buisnessInfo" ng-controller="BillingController">
+            <h4>Billing information <a href="#/editBilling"><i class="glyphicon glyphicon-pencil"></i></a> </h4>
+            Company: {{Company}}<br />
+            Address: {{Address}}<br />
+            Address: {{Address2}} <br />
+            City: {{City}} <br />
+            Post Code: {{PostCode}} <br />
+            Country: {{Country}} <br />
+            Company Number: {{CompanyNumber}} <br />
+            VAT Number: {{VATNumber}} <br />
+
+        </div>
+        </div>
+
+        </div>

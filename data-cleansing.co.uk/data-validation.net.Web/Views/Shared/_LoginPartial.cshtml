@@ -1,0 +1,25 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+        <div ng-controller="DropDownMenuController">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="#" ng-click="show = ! show" class="download fa fa-angle-down" alt="Profile" ><span class="fontFamily">Hello @User.Identity.Name</span></a>
+                <div class="showMenu" ng-show="show" style="z-index:999; outline:none; position:fixed; display:block">
+                    <ul>
+                        <li ng-repeat="category in categories">
+                            <a href="{{category.page}}" class="fontFamily">{{category.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="license fontFamily">Log off</a>
+            }
+        </div>
+    </text>
+}
+else
+{
+    @Html.ActionLink("Sign In", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "download fontFamily" })
+    @Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "license fontFamily" })
+}

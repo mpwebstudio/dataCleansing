@@ -1,0 +1,165 @@
+﻿@{
+
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Data Cleansing SPA Application</title>
+    @*<link href="http://handsontable.com//styles/main.css" rel="stylesheet">*@
+    <link href="http://handsontable.com//bower_components/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/appStyle.css" rel="stylesheet" />
+    <link href="~/Content/normalize.css" rel="stylesheet" />
+
+</head>
+<body ng-app="dataApp" ng-cloak>
+    <div class="body">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-header">
+                <a href="/"><img src="~/Content/img/logoAcc.png" class="logoAcc" /></a>
+            </div>
+            <ul class="nav navbar-nav pull-right">
+                <li id="notifications">
+                    <a class="notifications noscript" ng-click="notification = ! notification">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                    <div id="notifications-preview" class="collapseCart" ng-show="notification">
+                        <div class="fallback">
+                            There are no unread notifications.
+                        </div>
+
+                        <div class="footer">
+                            <a class="notification-link">See notification history</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown user">
+                    <a class="dropdown-toggle noscript" ng-click="prof = ! prof">
+                        @ViewBag.Email
+                        &nbsp;
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </a>
+                    <ul class="dropdown-menu2" ng-show="prof">
+                        <li>
+                            <a href="#/profile">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="item">
+                                    <i class="glyphicon glyphicon-off"></i>
+                                    Log Off
+                                </a>
+                            }
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="menu">
+            <div class="contents">
+                <div class="nav">
+                    <a href="#/profile" class="item">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Profile
+                    </a>
+                    <a href="#/services" class="item">
+                        <i class="glyphicon glyphicon-compressed"></i>
+                        Services
+                    </a>
+                    <a href="#/topUp" class="item">
+                        <i class="glyphicon glyphicon-upload"></i>
+                        Top Up
+                    </a>
+                    <a href="#/editBilling" class="item">
+                        <i class="glyphicon glyphicon-book"></i>
+                        Billing information
+                    </a>
+                    @*<a href="#/reporting" class="item">
+                            <i class="glyphicon glyphicon-link"></i>
+                            Subscriptions
+                        </a>*@
+                    <a href="#/reporting" class="item">
+                        <i class="glyphicon glyphicon-folder-open"></i>
+                        Support
+                    </a>
+
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="item">
+                            <i class="glyphicon glyphicon-off"></i>
+                            Log Off
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="overflow">
+            <div ng-view>
+
+            </div>
+        </div>
+    </div>
+    <script src="http://handsontable.com//bower_components/handsontable/dist/handsontable.full.min.js"></script>
+    <script src="~/Scripts/canvasjs.min.js"></script>
+    <script src="~/app/lib/jquery.min.js"></script>
+    <script src="~/app/lib/bootstrap.min.js"></script>
+    <script src="~/app/lib/angular/angular.js"></script>
+    <script src="~/app/lib/angular/angular-resource.min.js"></script>
+    <script src="~/app/lib/angular/angular-route.min.js"></script>
+    <script src="~/app/lib/upload.js"></script>
+    <script src="~/app/lib/ng-file-upload.min.js"></script>
+    <script src="~/app/lib/ng-file-upload-shim.min.js"></script>
+    <script src="~/app/lib/checklist-model.js"></script>
+    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script src="~/app/app.js"></script>
+    <script src="~/app/controller/ProfileController.js"></script>
+    <script src="~/app/controller/CreditsController.js"></script>
+    <script src="~/app/controller/BillingController.js"></script>
+    <script src="~/app/controller/EditUserController.js"></script>
+    <script src="~/app/controller/EditBIllingController.js"></script>
+    <script src="~/app/controller/InvoiceController.js"></script>
+    <script src="~/app/controller/BuyController.js"></script>
+    <script src="~/app/controller/SingleAddressController.js"></script>
+    <script src="~/app/controller/SingleEmailValidationController.js"></script>
+    <script src="~/app/controller/FileUploadController.js"></script>
+    <script src="~/app/controller/IbanFileUploadController.js"></script>
+    <script src="~/app/controller/SingleIbanController.js"></script>
+    <script src="~/app/controller/SingleBicController.js"></script>
+    <script src="~/app/controller/SingleCardValidationController.js"></script>
+    <script src="~/app/controller/CardUploadController.js"></script>
+    <script src="~/app/controller/SinglePhoneController.js"></script>
+    <script src="~/app/controller/PhoneUploadController.js"></script>
+    <script src="~/app/controller/EmailUploadController.js"></script>
+    <script src="~/app/controller/DeduplicateController.js"></script>
+    <script src="~/app/factories/billingData.js"></script>
+    <script src="~/app/factories/userData.js"></script>
+    <script src="~/app/factories/creditsData.js"></script>
+    <script src="~/app/factories/editUserData.js"></script>
+    <script src="~/app/factories/editBillingData.js"></script>
+    <script src="~/app/factories/invoiceData.js"></script>
+    <script src="~/app/factories/singleAddressData.js"></script>
+    <script src="~/app/factories/getDirectoryData.js"></script>
+    <script src="~/app/factories/singleIbanData.js"></script>
+    <script src="~/app/factories/singleBicData.js"></script>
+    <script src="~/app/factories/singleCardData.js"></script>
+    <script src="~/app/factories/singlePhoneData.js"></script>
+    <script src="~/app/factories/singleEmailData.js"></script>
+    <script src="~/app/factories/deduplicateData.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+
+</body>
+</html>

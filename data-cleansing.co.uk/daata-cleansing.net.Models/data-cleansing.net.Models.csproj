@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B7A255B5-A064-45A1-A124-809AA301649E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>daata_cleansing.net.Models</RootNamespace>
+    <AssemblyName>daata-cleansing.net.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressCleansingHistory.cs" />
+    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="BicCodeEurope.cs" />
+    <Compile Include="BicEurope.cs" />
+    <Compile Include="BillingInformation.cs" />
+    <Compile Include="CardCleansingHistory.cs" />
+    <Compile Include="CheckWhenAPICall.cs" />
+    <Compile Include="CheckWhenUserIsAuthenticated.cs" />
+    <Compile Include="ClientAPICheck.cs" />
+    <Compile Include="Credit.cs" />
+    <Compile Include="DailyTable.cs" />
+    <Compile Include="DeduplicateCleansingHistory.cs" />
+    <Compile Include="Digit.cs" />
+    <Compile Include="EmailCleansingHistory.cs" />
+    <Compile Include="FullDetail.cs" />
+    <Compile Include="GetBicDetails_Result.cs" />
+    <Compile Include="GetFullDetails.cs" />
+    <Compile Include="GetFullDetailsBankBranch_Result.cs" />
+    <Compile Include="GetFullDetailsBankPlus_Result.cs" />
+    <Compile Include="GetFullDetailsBank_Result.cs" />
+    <Compile Include="GetFullDetailsBicCountry_Result.cs" />
+    <Compile Include="GetFullDetailsFromStreet.cs" />
+    <Compile Include="GetFullDetailsPartialStreet.cs" />
+    <Compile Include="GetFullDetailsPlusStreet.cs" />
+    <Compile Include="GetFullDetailsPlusStreetAndFlat.cs" />
+    <Compile Include="GetFullDetailsSwift_Result.cs" />
+    <Compile Include="GetPhoneArea_Result.cs" />
+    <Compile Include="History.cs" />
+    <Compile Include="IbanCleansingHistory.cs" />
+    <Compile Include="Invoice.cs" />
+    <Compile Include="Messages.cs" />
+    <Compile Include="PhoneCleansingHistory.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RawSortCode.cs" />
+    <Compile Include="Subscribe.cs" />
+    <Compile Include="SwiftCode.cs" />
+    <Compile Include="TemporaryUser.cs" />
+    <Compile Include="TestTable.cs" />
+    <Compile Include="UKAreaCode.cs" />
+    <Compile Include="UKSortCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

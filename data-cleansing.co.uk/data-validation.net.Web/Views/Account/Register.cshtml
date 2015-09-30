@@ -1,0 +1,60 @@
+﻿@model data_validation.net.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Registration data-validation.net";
+
+}
+
+<div class="row" style="background-color:#0b2025; height:535px; margin-top: -50px;">
+
+    <div class="container">
+        <div class="clearfix"></div>
+        
+        
+        <div class="col-lg-3 registerForm">
+
+                <div class="text-center" style="padding-top:10px;"><h2 class="fontFamily">Register</h2></div>
+            
+                
+                <div style="color:red;font-size:12px;">@Html.ValidationSummary()</div>
+            
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group has-feedback">
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "User Name" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email address" })
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-lg btn-block btn-green submitter" />
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+
+
+
+

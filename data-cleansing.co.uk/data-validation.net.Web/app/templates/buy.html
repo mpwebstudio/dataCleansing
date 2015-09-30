@@ -1,0 +1,186 @@
+﻿<div class="container" ng-controller="BuyController">
+    <div class="row-fluid">
+        <div class="span8 main-column">
+            <h1 class="head">
+                Payment details
+            </h1>
+            <div class="col-lg-10">
+                <div class="row-fluid hidden-phone">
+                    <strong>Billing address</strong> <a class="editHref" href="#/editBilling">edit</a><br />
+                    {{Address}}<br />
+                    <div ng-if="Address2">
+                        {{Address2}}<br />
+                    </div>
+                    {{City}}<br />
+                    {{PostCode}}<br />
+                    {{Country}}<br />
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="right-column span-border-left">
+            <h2>My basket <span class="glyphicon glyphicon-shopping-cart"></span></h2>
+            <div class="goodybag clearfix">
+                <div class="pull-left"><img src="../../Content/img/bag.png" /></div>
+                <div class="pull-left date-range">
+                    <strong>£{{id}} credit                </strong>        <br>
+                    <a href="#/topUp" class="goto">Change</a>
+                </div>
+            </div>
+            <hr style="margin:5px 0;">
+            <div class="block clearfix">
+                <div class="pull-left">
+                    <strong>Total:</strong>
+                </div>
+                <div class="pull-right">
+                    <strong>£{{id}}</strong>
+                </div>
+            </div>
+
+            <div class="edit order">
+                <a href="/Payment/PaymentWithPaypal" class="btn btn-default" id="payBtn">
+                    <i class="glyphicon glyphicon-arrow-up"></i> Order & Pay
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row container pricing col-lg-6">
+    <div class="row-fluid">
+        <div class="span4">
+            <p>
+                <span id="pricingBuy">Pricing</span>
+            </p>
+        </div>
+        <div class="span5 offset1 al-right-left-tab pull-right">
+            <b>View by:</b>
+            <div class="btn view-btn secondary-bg" id="btnPrice">
+                <a href="javascript:showPrice()"><span>Price</span></a>
+            </div>
+            <div class="btn view-btn tertiary-bg" id="btnLookUp">
+                <a href="javascript:showLookUp()"><span>Look Up</span></a>
+            </div>
+        </div>
+    </div>
+    <table class="col-lg-12 table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="col-lg-4">
+                    Amount
+                </th>
+                <th class="col-lg-4">
+                    Validation
+                </th>
+                <th class="col-lg-4">
+                    Cleansing
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-lg-4">£25</td>
+                <td>
+                    <div class="price">5p</div>
+                    <div class="lookUp" style="display:none">500</div>
+                </td>
+                <td>
+                    <div class="price">0.83p</div>
+                    <div class="lookUp" style="display:none">3000</div>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="col-lg-4">£50</td>
+                <td>
+                    <div class="price">4.16p</div>
+                    <div class="lookUp" style="display:none">1200</div>
+                </td>
+                <td>
+                    <div class="price">0.69p</div>
+                    <div class="lookUp" style="display:none">7200</div>
+                </td>
+
+            </tr>
+            <tr class="danger">
+                <td class="col-lg-4">£100</td>
+                <td>
+                    <div class="price">3.84p</div>
+                    <div class="lookUp" style="display:none">2600</div>
+                </td>
+                <td>
+                    <div class="price">0.64p</div>
+                    <div class="lookUp" style="display:none">15600</div>
+                </td>
+
+            </tr>
+            <tr class="warning">
+                <td class="col-lg-4">£150</td>
+                <td>
+                    <div class="price">3.48p</div>
+                    <div class="lookUp" style="display:none">4300</div>
+                </td>
+                <td>
+                    <div class="price">0.58p</div>
+                    <div class="lookUp" style="display:none">25800</div>
+                </td>
+
+            </tr>
+            <tr class="active">
+                <td class="col-lg-4">£200</td>
+                <td>
+                    <div class="price">2.89p</div>
+                    <div class="lookUp" style="display:none">6900</div>
+                </td>
+                <td>
+                    <div class="price">0.48p</div>
+                    <div class="lookUp" style="display:none">41400</div>
+                </td>
+
+            </tr>
+            <tr class="success">
+                <td class="col-lg-4">£500</td>
+                <td>
+                    <div class="price">2.38p</div>
+                    <div class="lookUp" style="display:none">21000</div>
+                </td>
+                <td>
+                    <div class="price">0.39p</div>
+                    <div class="lookUp" style="display:none">126000</div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function showPrice() {
+        $("#btnPrice").removeClass("tertiary-bg").addClass("secondary-bg");
+        $("#btnLookUp").addClass("tertiary-bg").removeClass("secondary-bg");
+        var elem = document.getElementsByClassName("price");
+        var elem2 = document.getElementsByClassName("lookUp");
+        for (var i = 0; i < elem.length; i++) {
+
+            elem[i].style.display = "block";
+        }
+        for (var i = 0; i < elem2.length; i++) {
+            elem2[i].style.display = "none";
+        }
+    }
+    function showLookUp() {
+        $("#btnLookUp").removeClass("tertiary-bg").addClass("secondary-bg");
+        $("#btnPrice").addClass("tertiary-bg").removeClass("secondary-bg");
+        var elem = document.getElementsByClassName("price");
+        var elem2 = document.getElementsByClassName("lookUp");
+        for (var i = 0; i < elem.length; i++) {
+
+            elem[i].style.display = "none";
+        }
+        for (var i = 0; i < elem2.length; i++) {
+            elem2[i].style.display = "block";
+        }
+    }
+</script>

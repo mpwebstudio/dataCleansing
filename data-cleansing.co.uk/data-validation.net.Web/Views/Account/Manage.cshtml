@@ -1,0 +1,21 @@
+﻿@model DataValidationOfficial.Models.LocalPasswordModel
+@{
+    
+}
+
+<div class="container">
+
+    
+
+    @if (ViewBag.HasLocalPassword)
+    {
+        @Html.Partial("_ChangePasswordPartial")
+    }
+    else
+    {
+        @Html.Partial("_SetPasswordPartial")
+    }
+
+    
+
+</div>

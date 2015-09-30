@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Data Cleansing quality data supplier";
+}
+
+<div class="app-header" style="margin-top:-50px;">
+    <div class="container">
+        <div class="text-center">
+            <h1 style="font-family:h1Family">
+                SAY <span style="color:red; font:bolder">N</span>O TO DIRTY DATA!
+            </h1>
+            <p class="text-center ital">
+                Dirty data lead to poor productivity, which may lead to poor sales. Don’t let your data get that dirty. Try our<span style="color:white"> self-service</span> platform for free!
+            </p>
+        </div>
+        <div class="intro-left">
+            <ul>
+                <li><a href="/addressvalidation"><span class="glyphicon glyphicon-briefcase"></span>Address Validation</a></li>
+                <li><a href="/emailvalidation"><span class="glyphicon glyphicon-inbox"></span>Email Validation</a>
+                <li><a href="/creditcardvalidation"><span class="glyphicon glyphicon-barcode"></span>Card Payment Validation</a></li>
+                <li><a href="/deduplication#/deduplication"><span class="glyphicon glyphicon-leaf"></span>De-duplication</a></li>
+                <li><a href="/telephonevalidation"><span class="glyphicon glyphicon-signal"></span>Telephone Validation</a></li>
+                <li><a href="/ibanValidation"><span class="glyphicon glyphicon-inbox"></span>Iban Validation</a></li>
+            </ul>
+            <div class="left-description">
+                <h4>Easy to use self-service @ViewBag.Test</h4>
+                <p>Our integrations and APIs help company and individuals automate payments list maintenance. Upload your list or file and you will recieve a cleansed CSV file ready to use or import back to your DB! </p>
+            </div>
+        </div>
+        <div class="intro-right">
+            <p><img id="img" class="img-responsive" src="~/Content/img/address.jpg" alt="data-cleansing.net address cleansing"></p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    
+    <div class="pagefold"></div>
+    <div class="row row-page">
+        <div class="col-sm-3 col-md-4">
+            <p class="thumbnail-bordered"><a href="#" title=""><img src="~/Content/img/cardValidation.jpg" alt="#" title=""></a></p>
+        </div><!-- /col -->
+        <div class="col-sm-9 col-md-8">
+            <h3>Payment Validation - practical solution for online shops and telephone payments</h3>
+            <p class="just">With our instant Payment Validation with highlite if a payment details are wrong or correct you can offer to your clients easy and plesent payments. Save clients and your time when make a telephone payment becouse time is money right?</p>
+            <p class="just">Combine with Address Validation you can make sure that will avoid all misspell addresses. Bad data lead to lost revenue and uneccessary costs. Don't let yours be one of them. </p>
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div>
+
+<div class="row-signup">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <p class="trial-text"><strong>Are you intrest in our services??</strong> We offer you <span>compleatly free and no obligation credits</span> <strong> to try the full functionality of our services!</strong></p>
+            </div><!-- /col -->
+            <div class="col-lg-3">
+                <p class="trial-signup">@Html.ActionLink("Register", "Register", "Account", routeValues:null, htmlAttributes: new { @class = "license" })</p>
+            </div><!-- /col -->
+        </div><!-- /row -->
+    </div><!-- /container -->
+</div>
+
+<div class="row-clients hidden-xs" title="Our clients">
+    <ul>
+        <li><img src="~/Content/img/01.jpg" alt=""></li>
+        <li><img src="~/Content/img/02.jpg" alt=""></li>
+        <li><img src="~/Content/img/03.jpg" alt=""></li>
+        <li><img src="~/Content/img/06.jpg" alt=""></li>
+        <li><img src="~/Content/img/07.jpg" alt=""></li>
+        <li><img src="~/Content/img/09.jpg" alt=""></li>
+        <li><img src="~/Content/img/10.jpg" alt=""></li>
+        <li><img src="~/Content/img/11.jpg" alt=""></li>
+    </ul>
+    <div class="clearfix"></div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-7 col-md-6">
+            <h3>You can use our services on the go </h3>
+            <p class="just"></p>
+            <p class="just"></p>
+            <p class="just"></p>
+        </div><!-- /col -->
+        <div class="col-sm-5 col-md-6">
+            <div class="online-invoices">
+                <a target="_blank" title="" href="#"><img src="~/Content/img/" alt="#"></a>
+            </div>
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div>

@@ -1,0 +1,16 @@
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\obj\Debug\data-cleansing.net.Data.csprojResolveAssemblyReference.cache
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\data-cleansing.net.Data.dll.config
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\data-cleansing.net.Data.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\data-cleansing.net.Data.pdb
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\daata-cleansing.net.Models.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\EntityFramework.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\daata-cleansing.net.Models.pdb
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\EntityFramework.xml
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\obj\Debug\data-cleansing.net.Data.dll
+D:\2015\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\obj\Debug\data-cleansing.net.Data.pdb

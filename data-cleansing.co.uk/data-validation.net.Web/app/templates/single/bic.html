@@ -1,0 +1,42 @@
+﻿<div ng-controller="SingleBicController">
+    <div class="form-group">
+        <h2 style="color:black">Single Bic Validation</h2>
+    </div>
+
+    <form class="form-horizontal container-fluid" name="bicValidation">
+        <br />
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Enter an BIC number</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required placeholder="BIC number" ng-model="validate">
+            </div>
+            <span class="edit"><button class="btn btn-default" ng-disabled="bicValidation.$invalid" ng-click="bicCleansing(validate,bicValidation)">Find</button></span>
+        </div>
+    </form>
+
+    <div ng-show="table">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+
+                    <th class="col-lg-1">No:</th>
+                    <th class="col-lg-2">Bank</th>
+                    <th class="col-lg-1">Branch</th>
+                    <th class="col-lg-1">City</th>
+                    <th class="col-lg-1">Country</th>
+                    <th class="col-lg-1" style="color:#F3F6F9">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="add in answer">
+                    <td>{{$index +1}}</td>
+                    <td>{{add.BankOrInstitution}}</td>
+                    <td>{{add.Branch}}</td>
+                    <td>{{add.City}}</td>
+                    <td>{{add.Country}}</td>
+                    <td><a ng-click="moreDetails($index)"> more details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

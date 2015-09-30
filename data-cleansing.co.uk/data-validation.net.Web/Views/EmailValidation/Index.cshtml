@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Email validation by Data Cleansing";
+}
+
+<div class="app-header" style="margin-top:-50px">
+    <div class="container">
+        <div class="text-center">
+            <h1 style="font-family:h1Family">
+                EMA<span style="color:red; font:bolder">I</span>L VALIDATION
+            </h1>
+        </div>
+        <div class="row">
+            <img class="img-responsive" id="address" src="~/Content/img/emailValidation.jpg" alt="address finding" />
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="part text ">
+
+        <p><h2>Real-time email address validation</h2></p>
+
+        <p>Email validation is one of our leading service which allows you to make sure your email data base is up to date and all your emails will be delivert corectly!</p>
+    </div>
+
+    <div class="">
+        <h3>Integrations:</h3>
+
+        <ul>
+            <li>Cleansing your email data base</li>
+            <li>API integration</li>
+            <li>Shopping cart solutions API integration </li>
+            <li>Marketing</li>
+        </ul>
+    </div>
+
+    <p>Email validation service can be installed and integrated in minutes.</p>
+
+
+
+    <h3 style="color:#22445B; margin-top:30px;">Email validation examples</h3>
+    <div class="row">
+
+        <div class="text-center">
+
+            <h2 class="blue">Example with table integration</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="example">
+            <div class="col-lg-4">
+                Email validation showing resultas as table. Easy and fast for integration on any platform.
+            </div>
+            <div class="col-lg-6">
+                <form id="search" onsubmit="return false" class="navbar-form">
+                    <div id="loading" style="display:none">
+                        <img src="../../../Content/img/loading-gallery-120.gif" class="loadingEmail" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="emailAddr" value="" class="form-control" placeholder="Email address to verify" />
+                    </div>
+
+                    <button type="submit" id="emailBtn" class="btn btn-success" onclick="getResults(apiNumber)">Check email </button>
+                </form>
+            </div>
+            <table class="table table-striped table-hover" id="emailTable">
+                <tr>
+                    <th class="col-lg-5">Email address</th>
+                    <th class="col-lg-4">Is valid</th>
+                    <th class="col-lg-2">Delete</th>
+                </tr>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="app-header">
+    <div class="text-center"><h2 class="stripe">Integration</h2></div>
+</div>
+
+<div class="container integration">
+    <div class="example">
+        All our products can be easy integrated into any web based system such as Magento, WordPress, ZenCart and many more. Diferent layouts and CSS styling in a fraction of the time. Try our products for free - no upfront payment, no obliagation. When we say free we mean it!
+    </div>
+
+    <div class="col-lg-2">
+        <img src="~/Content/img/magento.jpg" />
+    </div>
+
+    <div class="col-lg-2">
+        <img src="~/Content/img/nopcommerce.jpg" />
+    </div>
+    <div class="col-lg-2">
+        <img src="~/Content/img/umbraco.jpg" />
+    </div>
+    <div class="col-lg-2">
+        <img src="~/Content/img/zencart.jpg" />
+    </div>
+    <div class="col-lg-2">
+        <img src="~/Content/img/salesforce.jpg" />
+    </div>
+    <div class="col-lg-2">
+        <img src="~/Content/img/sitecore.jpg" id="sitecore" />
+    </div>
+</div>
+
+<script src="~/javascript/emailValidation.js"></script>
+<script type="text/javascript">
+    var apiNumber = '12345678';
+</script>

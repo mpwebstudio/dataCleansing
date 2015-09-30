@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="http://handsontable.com//bower_components/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+    
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/dataCleansing.css" rel="stylesheet" />
+
+
+</head>
+<body class="scotchifield" ng-app="dataCleansingApp" ng-cloak>
+    <div class="scotch-panel-wrapper" style="position: relative; overflow: hidden; width: 100%;">
+        <div class="scotch-panel-canvas" style="position: relative; height: 100%; width: 100%; -webkit-transform: translate3d(0px, 0px, 0px); transform: translate3d(0px, 0px, 0px); -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transition: all 300ms ease; transition: all 300ms ease;">
+            <div class="framework-container">
+                <div class="app-header">
+                    <header class="container">
+                        <div class="row">
+                            <div class="col-sm-7 col-md-5 col-lg-4">
+                                <div class="logo">
+                                    <a class="toggle-menu hidden-md hidden-lg" onclick="mobileMenu();">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <em>menu</em>
+                                    </a>
+                                    <div class="logo-container">
+                                        <a href="/" title="Data cleansing service">
+                                            <img src="~/Content/img/Logo2.png" alt="Data cleansing" />
+                                        </a>
+                                        <small>Data cleansing APIs and software</small>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-sm-5 col-md-7 col-lg-8">
+                                <nav id="main">
+                                    <ul class="hidden-xs hidden-sm">
+                                        <li>@Html.ActionLink("Services", "Services", "Home", routeValues: null, htmlAttributes: new { @class = "fontFamily" })</li>
+                                        <li><a href="#" class="fontFamily">API</a></li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li> <a href="/Application" class="fontFamily">Application</a></li>
+                                        }
+                                        <li>@Html.ActionLink("Prices", "Index", "Payment", routeValues: null, htmlAttributes: new { @class = "fontFamily" })</li>
+                                        <li>@Html.ActionLink("Support", "Index", "Support", null, htmlAttributes: new { @class = "fontFamily" }) </li>
+                                    </ul>
+                                    <div class="secondary">
+
+                                        @Html.Partial("_LoginPartial")
+
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+
+                    </header>
+                </div>
+
+                @RenderSection("featured", required: false)
+
+                @RenderBody()
+
+
+            </div>
+            <footer>
+                <div class="container">
+                    <div class="row row-footer">
+                        <div class=" col-sm-6 col-md-6 col-lg-2">
+                            <h6>Data Validation</h6>
+                            <ul class="footer-menu">
+                                <li><a href="/addressvalidation">Address Validation</a></li>
+                                <li><a href="/emailValidation">Email Validation</a></li>
+                                <li><a href="/creditcardValidation">Card Payment Validation</a></li>
+                                <li><a href="/bicValidation">Swift Validation</a></li>
+                                <li><a href="/bankValidation">Iban Validation</a></li>
+                                <li><a href="/telephoneValidation">Telephone Validation</a></li>
+
+                            </ul>
+
+                            <div class="clearfix"></div>
+
+                            <hr class="visible-md">
+
+                        </div><!-- /col -->
+                        <div class=" col-sm-6 col-md-6 col-lg-2">
+                            <h6>Data Cleansing</h6>
+                            <ul class="footer-menu">
+                                <li><a href="/addressCleansing#/addressCleansing">Address Cleansing</a></li>
+                                <li><a href="/emailCleansing#/emailCleansing">Email Cleansing</a></li>
+                                <li><a href="/telephoneValidation#/telephoneCleansing">Telephone Cleansing</a></li>
+                                <li><a href="/deduplication#/deduplication">De-duplication</a></li>
+
+                            </ul>
+
+                            <div class="clearfix"></div>
+
+                            <hr class="visible-md">
+
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-2">
+                            <h6><a href="/">Home</a></h6>
+                            <h6>APIs</h6>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <h6><a href="~/Application">Application</a></h6>
+                                <h6><a href="~/Application">Download</a></h6>
+                            }
+                            <h6><a href="~/Payment/">Prices</a></h6>
+                            <h6><a href="~/Support/">Support</a></h6>
+
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="newsletter-area">
+                                <h6>Subscribe to Data Cleansing Newsletter</h6>
+                                <p class="hidden-xs">Get the latest deals delivered to your inbox</p>
+                                <div class="newsletter">
+                                    <input type="email" placeholder="Enter your email..." id="subscribe_mail">
+                                    <button onclick="subscribe();">OK</button>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                            </div>
+                        </div><!-- /col -->
+                        <div class="col-sm-6 col-md-6 col-lg-2">
+                            <h6>Stay in Contact</h6>
+                            <a target="_blank" href="https://www.facebook.com/"><img src="~/Content/img/facebook.png" /></a> <a target="_blank" href="https://plus.google.com/"><img src="~/Content/img/google.png" /></a> <a target="_blank" href="https://www.twitter.com/"><img src="~/Content/img/twitter.png" /></a>
+                        </div><!-- /col -->
+                    </div><!-- /row -->
+                    <div class="row row-copyright">
+                        <div class="col-sm-6">
+                            <p>© @DateTime.Now.Year Data Cleansing</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="terms"><a href="/#">Therms and conditions</a> <span>|</span> <a href="/ContactUs">Contact us</a></p>
+                        </div>
+                    </div>
+                </div><!-- /container -->
+            </footer>
+            <nav id="mobile" class="scotch-panel-left" style="top: 0px; left: -70%; width: 70%; height: 100%; position: absolute; z-index: 888888; overflow: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden;">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/home/services">Services</a></li>
+                    <li><a href="/#">API</a></li>
+
+                    <li><a href="/payment">Prices</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </nav>
+        </div>
+        @*<div id="cookie-notice" class="cookie-banner"><div class="cookie-banner__body"><p class="cookie-banner__text"><strong>We use Cookies</strong> - by using this site or closing this message you’re agreeing to our <a target="sky.com" href="http://help.sky.com/security/privacy/privacy-and-cookies-notice" class="cookie-banner__link">Cookies policy</a></p><div class="cookie-banner__close" id="close-cookie-warning"></div></div></div>*@
+    </div>
+
+    <script>
+        function mobileMenu() {
+            $('nav#mobile').scotchPanel({
+                containerSelector: 'body',
+                direction: 'left',
+                duration: 300,
+                transition: 'ease',
+                clickSelector: '.toggle-menu',
+                distanceX: '30%',
+                enableEscapeKey: true
+            });
+        }
+
+        function subscribe() {
+            var email = $('#subscribe_mail').val();
+        }
+    </script>
+    <script src="http://handsontable.com//bower_components/handsontable/dist/handsontable.full.min.js"></script>
+    <script src="~/Scripts/lib/jquery.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap.min.js"></script>
+    <script src="~/Scripts/lib/angular/angular.js"></script>
+    <script src="~/Scripts/lib/angular/angular-resource.min.js"></script>
+    <script src="~/Scripts/lib/angular/angular-route.min.js"></script>
+    <script src="~/Scripts/lib/upload.js"></script>
+    <script src="~/Scripts/lib/ng-file-upload.min.js"></script>
+    <script src="~/Scripts/lib/ng-file-upload-shim.min.js"></script>
+    <script src="~/Scripts/lib/ngStorage.js"></script>
+    <script src="~/Scripts/appSpa.js"></script>
+    <script src="~/Scripts/ng-csv.js"></script>
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
+    <script src="~/Scripts/controller/AddressCleansingController.js"></script>
+    <script src="~/Scripts/controller/DropDownMenuController.js"></script>
+    <script src="~/Scripts/controller/CalculatorController.js"></script>
+    <script src="~/Scripts/controller/EmailCleansingController.js"></script>
+    <script src="~/Scripts/controller/DeduplicationController.js"></script>
+    <script src="~/Scripts/controller/PhoneCleansingController.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+    <script src="~/javascript/HomeStyle.js"></script>
+
+</body>
+</html>

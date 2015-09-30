@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Telephone number validation by Data Cleansing";
+}
+
+<div class="app-header" style="margin-top:-50px">
+    <div class="container">
+        <div class="text-center">
+            <h1 style="font-family:h1Family">
+                TELEPHONE NUMBER VAL<span style="color:red; font:bolder">I</span>DATION
+</h1>
+        </div>
+        <div class="row">
+            <img class="img-responsive" id="address" src="~/Content/img/creditCardValidation.jpg" alt="bic swift validation" />
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="part text ">
+
+        <p><h2>Real-time addresses just from a postcode or partial address</h2></p>
+
+        <p>Address Validation is our leading real-time service which provides a full address finder facility, producing accurate addresses from a postcode or partial address using Royal Mail’s UK Postal Address File (PAF). Our address validation web services allow you to quickly capture address data 24 hours a day, 365 days a year through our secure servers. Our services can be installed and integrated into your systems in minutes.</p>
+    </div>
+
+    <div class="">
+        <h3>Integrations:</h3>
+
+        <ul>
+            <li>Your website as an auto fill web service</li>
+            <li>API integration</li>
+            <li>Shopping cart solutions API integration </li>
+        </ul>
+    </div>
+
+    <p>Offered online or on premise address validation service can be installed and integrated in minutes.</p>
+    <div class="row">
+        <div class="text-center">
+            <h2 class="blue">Inline telephone validation controller plus validation message</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="example">
+            <div class="col-lg-4">Address finder integrated as dropdown menu. Easy and fast for integration on any platform. Още нещо по възможност.</div>
+            <div class="col-lg-8">
+                <form id="search" onsubmit="return false" class="navbar-form">
+                    <div id="telNumber" style="display:block" class="form-group has-feedback">
+                        <input type="text" id="telNumb" value="" class="form-control" placeholder="Enter a telephone number" />
+                        <span id="telTypePic" class="form-control-feedback"><i id="telPic"></i></span>
+                        <button class="btn btn-success" onclick="getResults(apiNumber,1)">Validate</button>
+                    </div>
+                    <div id="telResult" style="display:none">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <h2 class="blue">Inline validation plus picture</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="example">
+            <div class="col-lg-8">
+                <form id="search" onsubmit="return false" class="navbar-form">
+                    <div id="telNumberT" style="display:block" class="form-group has-feedback">
+                        <input type="text" id="telNumbT" value="" class="form-control" placeholder="Enter a telephone number" />
+                        
+                        <button class="btn btn-success" onclick="getResults(apiNumber,2)">Validate</button>
+                    </div>
+                    <div id="telResult" style="display:none">
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">Address finder integrated as dropdown menu. Easy and fast for integration on any platform. Още нещо по възможност.</div>
+        </div>
+    </div>
+
+</div>
+    <div class="app-header">
+        <div class="text-center"><h2 class="stripe">Integration</h2></div>
+    </div>
+
+    <div class="container integration">
+        <div class="example">
+            All our products can be easy integrated into any web based system such as Magento, WordPress, ZenCart and many more. Diferent layouts and CSS styling in a fraction of the time. Try our products for free - no upfront payment, no obliagation. When we say free we mean it!
+        </div>
+
+        <div class="col-lg-2">
+            <img src="~/Content/img/magento.jpg" />
+        </div>
+
+        <div class="col-lg-2">
+            <img src="~/Content/img/nopcommerce.jpg" />
+        </div>
+        <div class="col-lg-2">
+            <img src="~/Content/img/umbraco.jpg" />
+        </div>
+        <div class="col-lg-2">
+            <img src="~/Content/img/zencart.jpg" />
+        </div>
+        <div class="col-lg-2">
+            <img src="~/Content/img/salesforce.jpg" />
+        </div>
+        <div class="col-lg-2">
+            <img src="~/Content/img/sitecore.jpg" id="sitecore" />
+        </div>
+    </div>
+    <script src="~/javascript/phoneValidation.js"></script>
+    <script type="text/javascript">
+        var apiNumber = '12345678';
+    </script>

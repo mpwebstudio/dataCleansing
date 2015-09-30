@@ -1,0 +1,61 @@
+﻿<div ng-controller="EmailCleansingController">
+
+    <div class="col-lg-4">
+        Email cleansing integrated as dropdown menu. Easy and fast for integration on any platform. Още нещо по възможност.
+    </div>
+
+    <div class="col-lg-6">
+        <div ng-show="cleansingProgress">
+            <img src="../../../Content/img/loading-gallery.gif" class="loading" />
+        </div>
+
+        <label for="fileToUpload">Select a Files to Upload</label><br />
+        <div id="dropbox" class="dropbox" ng-class="dropClass" ng-accept="'text/csv'" accept=".csv" ng-model="multiple"><span>{{dropText}}</span></div>
+
+        <div class="edit2">
+            <label for="fileToUpload">Or select a files</label>
+            <span id="fileInputContainer">
+                <a id="fileUploadDummy" class="btn btn-default" title="Choose File">Choose Files</a>
+                <input type="file" class="fileUploadInput2" name="fileUpload" accept=".csv" title="Choose File" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)">
+
+            </span>
+
+        </div>
+        <br />
+        <div ng-show="files.length">
+            <div ng-repeat="file in files.slice(0)" class="col-lg-3 info" id="tt">
+                <div id="test">
+                    <a ng-click="removeElement($index)" id="minus">
+                        <i class="glyphicon-minus" id="minusGly"></i>
+                    </a>
+                </div>
+                <span>{{file.webkitRelativePath || file.name}}</span>
+                (<span ng-switch="file.size > 1024*1024">
+                    <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                    <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                </span>)
+            </div>
+            <div class="row edit2">
+                <span id="fileInputContainerUpload">
+                    <a id="fileUploadDummy" class="btn btn-default" title="Upload">Upload</a>
+                    <input type="button" class="fileUploadInput" id="fileToUpload" ng-click="uploadFile()" value="Upload" />
+                </span>
+            </div>
+            <br />
+            <div ng-show="progressVisible" style="margin-top:70px;">
+                <div class="percent">{{progress}}%</div>
+                <div class="progress-bar">
+                    <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <div class="row col-lg-11">
+            <div id="basic_example" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" onselectstart='return false;' style="max-height:300px"></div>
+            <div ng-show="downloadDiv" class="edit2">
+                <button type="button" ng-csv="results" class="edit2 btn btn-default" id="fileUploadDummy" filename="test.csv">Download</button>
+            </div>
+        </div>
+
+</div>

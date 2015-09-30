@@ -1,0 +1,64 @@
+﻿<div class="form-group">
+
+    <h2 style="color:black">Edit Billing Details</h2>
+
+</div>
+
+<form class="form-horizontal container-fluid" name="newBillingInfo" ng-controller="EditBillingController">
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Company</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Company Name" ng-model="billing.Company">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Address</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Address" required ng-model="billing.Address">
+        </div>
+    </div>
+    <div class="form-group empty-extra">
+        <label class="col-sm-3 control-label">Address</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Address" ng-model="billing.Address2">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">City</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="City" required ng-model="billing.City">
+        </div>
+    </div>
+    <div class="form-group empty-extra">
+        <label class="col-sm-3 control-label">Post Code</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Post Code" required ng-model="billing.PostCode">
+        </div>
+    </div>
+    <div class="form-group empty-extra">
+        <label class="col-sm-3 control-label">Country</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Country" required ng-model="billing.Country">
+        </div>
+    </div>
+    <div class="form-group empty-extra">
+        <label class="col-sm-3 control-label">Company Number</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Company Number" ng-model="billing.CompanyNumber">
+        </div>
+    </div>
+    <div class="form-group empty-extra">
+        <label class="col-sm-3 control-label">VAT Number</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="VAT Number" ng-model="billing.VATNumber">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="edit">
+            <button class="btn btn-default" ng-disabled="newBillingInfo.$invalid" ng-click="saveBilling(billing,newBillingInfo)">Save</button>
+            <button class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
+        </div>
+    </div>
+
+</form>

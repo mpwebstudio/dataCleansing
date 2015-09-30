@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2>Index</h2>
+
+    @using (Ajax.BeginForm("", "", new AjaxOptions { HttpMethod = "Post" }, new { id = "CleansingForm" }))
+    {
+        @Html.TextBox("Id")
+
+        <input type="button" onclick="Submit();" value="Submit" />
+    }
+
+    <div id="result" style="display:none">
+
+    </div>
+
+    <br />
+</div>
+
+<script type="text/javascript">
+    function Submit()
+    {
+        var form = document.getElementById('Id').value;
+        
+        var url = "/DataCleansing/GetResult";
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: {id:form},
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    
+                    var res = document.getElementById("result").style.display = "block"
+                    document.getElementById("result").innerHTML = item.Street + "<br />" + item.PostCode;
+                    
+})
+}
+
+        })
+    }
+</script>

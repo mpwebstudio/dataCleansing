@@ -1,0 +1,48 @@
+﻿@model data_validation.net.Web.Models.ContactUsModel
+
+@{
+    ViewBag.Title = "Contact Data Cleansing";
+}
+
+<div class="container">
+    <div class="text-center"><h2 style="color:#2A4e65">Contact Us</h2></div>
+    <div class="clearfix"></div>
+    
+
+    <div class="contactUsForm col-sm-12">
+        <form id="ContactForm" action="/ContactUs/SendMessage" >
+            <div class="col-sm-6">
+                <div class="col-lg-11">
+                    <div>
+
+                        @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", @id = "subject", @placeholder = "Subject" })
+                        @Html.ValidationMessageFor(x => x.Subject)
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @id = "name", @placeholder = "Name" })
+                        @Html.ValidationMessageFor(x => x.Name)
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @id = "phone", @placeholder = "Phone" })
+                        @Html.ValidationMessageFor(x => x.Phone)
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "email", @placeholder = "Email" })
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </div>
+                    <div>
+                        @Html.DropDownListFor(x => x.EnquiryType, (IEnumerable<SelectListItem>)ViewBag.EnquiryType, new { @class = "form-control", @id = "enquiryType"})
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div>
+                    @Html.TextAreaFor(x => x.Context, 10, 50, new { @class = "form-control", @id = "context", @placeholder = "Please write your message here!" })
+                </div>
+                <div>
+                    <input type="submit" class="btnMessage fontFamily" value="Send message">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

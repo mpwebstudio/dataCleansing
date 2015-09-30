@@ -1,0 +1,265 @@
+﻿@model IEnumerable<data_cleansing.net.Models.Profile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="app-header" style="margin-top:-50px;">
+    <div class="text-center">
+        <h1 style="font-family:h1Family">
+            Prices starting at under a <span style="color:red">P</span>enny per record.
+        </h1>
+    </div>
+    <div class="text-center ital">
+        Fast and completely self-service validation software and APIs. There are no setup fees, no contracts, and no credit card required to get started.<br />
+        For lists over 126 000 records, talk to us for a deal!
+    </div>
+    <br />
+    <div class="container">
+        <div class="col-lg-10">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-5 offset1">
+                <div class="text-center">
+                    <h3><a onclick="lookUp();">Look Up Price</a> | <a onclick="bulk();">Bulk Price</a></h3>
+                    <table class="table table-lookup" id="single" style="display:block">
+                        <tbody>
+                            <tr>
+                                <th> 0 - 500</th>
+                                <td>£0.05 / record</td>
+                            </tr>
+                            <tr>
+                                <th>501 - 1 200</th>
+                                <td>£0.042 / record</td>
+                            </tr>
+                            <tr>
+                                <th>1 201 - 2 600</th>
+                                <td>£0.038 / record</td>
+                            </tr>
+                            <tr>
+                                <th>2 601 - 4 300</th>
+                                <td>£0.035 / record</td>
+                            </tr>
+                            <tr>
+                                <th>4 301 - 6 900</th>
+                                <td>£0.029 / record</td>
+                            </tr>
+                            <tr>
+                                <th>6 901 - 20 000</th>
+                                <td>£0.024 / record</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-lookup" id="bulk" style="display:none">
+                        <tbody>
+                            <tr>
+                                <th> 0 - 3 000</th>
+                                <td>£0.008 / record</td>
+                            </tr>
+                            <tr>
+                                <th>3 001 - 7 200</th>
+                                <td>£0.007 / record</td>
+                            </tr>
+                            <tr>
+                                <th>7 201 - 15 600</th>
+                                <td>£0.006 / record</td>
+                            </tr>
+                            <tr>
+                                <th>15 601 - 25 800</th>
+                                <td>£0.0058 / record</td>
+                            </tr>
+                            <tr>
+                                <th>25 801 - 41 400</th>
+                                <td>£0.0048 / record</td>
+                            </tr>
+                            <tr>
+                                <th>41 401 - 126 000</th>
+                                <td>£0.0039 / record</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span class="ital">
+                        All credits are vilid for period of One (1) calendar year from the day of purchase! All remain credits are transferable if new credits are purchase.
+                    </span>
+
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h3 class="text-center green">Calculate your price</h3>
+                <div class="calculate-price" style="background-color:white; color:#808080">
+                    <p>Enter your estimated number of verifications for a one month period* in the box below to see what it will cost you.</p>
+                    
+                    
+
+                    <input type="number" min="0" placeholder="# of records per month" oninput="price()" id="inputNumber" />
+
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                    <br />
+                    <div>
+                        <p>
+                            <h3>Price per year</h3>
+                        </p>
+                        <h3> Total cost: <span id="totalPerYear"></span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Service</th>
+                <th>£25</th>
+                <th>£50</th>
+                <th>£100</th>
+                <th>£150</th>
+                <th>£200</th>
+                <th>£500</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><b>Address look up</b></td>
+                <td>500</td>
+                <td>1200</td>
+                <td>2600</td>
+                <td>4300</td>
+                <td>6900</td>
+                <td>21000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><b>Address cleansing bulk upload</b></td>
+                <td>3000</td>
+                <td>7200</td>
+                <td>15600</td>
+                <td>25800</td>
+                <td>41400</td>
+                <td>126000</td>
+            </tr>
+            <tr class="info">
+                <td>3</td>
+                <td><b>Email verification look up</b></td>
+                <td>500</td>
+                <td>1200</td>
+                <td>2600</td>
+                <td>4300</td>
+                <td>6900</td>
+                <td>21000</td>
+            </tr>
+            <tr class="success">
+                <td>4</td>
+                <td><b>Email verification bulk upload</b></td>
+                <td>3000</td>
+                <td>7200</td>
+                <td>15600</td>
+                <td>25800</td>
+                <td>41400</td>
+                <td>126000</td>
+            </tr>
+            <tr class="danger">
+                <td>5</td>
+                <td><b>Card payment validation look up</b></td>
+                <td>500</td>
+                <td>1200</td>
+                <td>2600</td>
+                <td>4300</td>
+                <td>6900</td>
+                <td>21000</td>
+            </tr>
+            <tr class="warning">
+                <td>6</td>
+                <td><b>Card payment validation bulk upload</b></td>
+                <td>3000</td>
+                <td>7200</td>
+                <td>15600</td>
+                <td>25800</td>
+                <td>41400</td>
+                <td>126000</td>
+            </tr>
+            <tr class="active">
+                <td>7</td>
+                <td><b>Iban validation look up</b></td>
+                <td>500</td>
+                <td>1200</td>
+                <td>2600</td>
+                <td>4300</td>
+                <td>6900</td>
+                <td>21000</td>
+            </tr>
+            <tr class="warning">
+                <td>8</td>
+                <td><b>Iban validation bulk upload</b></td>
+                <td>3000</td>
+                <td>7200</td>
+                <td>15600</td>
+                <td>25800</td>
+                <td>41400</td>
+                <td>126000</td>
+            </tr>
+            <tr class="danger">
+                <td>9</td>
+                <td><b>Swift number validation look up</b></td>
+                <td>500</td>
+                <td>1200</td>
+                <td>2600</td>
+                <td>4300</td>
+                <td>6900</td>
+                <td>21000</td>
+            </tr>
+            <tr class="success">
+                <td>10</td>
+                <td><b>Swift number validation bulk upload</b></td>
+                <td>3000</td>
+                <td>7200</td>
+                <td>15600</td>
+                <td>25800</td>
+                <td>41400</td>
+                <td>126000</td>
+            </tr>
+            <tr class="info">
+                <td>11</td>
+                <td><b>UK Telephone validation look up</b></td>
+                <td>500</td>
+                <td>1200</td>
+                <td>2600</td>
+                <td>4300</td>
+                <td>6900</td>
+                <td>21000</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td><b>UK Telephone validation bulk upload</b></td>
+                <td>3000</td>
+                <td>7200</td>
+                <td>15600</td>
+                <td>25800</td>
+                <td>41400</td>
+                <td>126000</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td><b>Company Credit Score<small style="color:red"> comming soon </small></b></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="invoices-header text-center">
+    <p class="large-volume">If you have a lager volume of data we have a special large volume pricing. <br /> Call us directly at + 44 1244 888 888</p>
+</div>

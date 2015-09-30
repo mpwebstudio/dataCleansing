@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Success purchase of credits";
+}
+
+<div class="container">
+    <h2>Thank you for your order</h2>
+    Your payment of £@ViewBag.Amount is now complete. You have succesful add @ViewBag.Credits credits to your account.<br />
+    To view your invoice click <a href="/createInvoice/pdfInvoice/@ViewBag.Invoice">here</a><br />
+    If you are not redirected within 10 seconds, <a href="/Application">click here.</a>
+    <div class="advert" style="min-height:250px">
+
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿<div ng-controller="FileUploadController">
+    <div ng-show="cleansingProgress">
+        <img src="../../../Content/img/loading-gallery.gif" class="loading" />
+    </div>
+
+    <h2>Bulk Bic Validation</h2>
+
+    <label for="fileToUpload">Select a File to Upload</label><br />
+    <div id="dropbox" class="dropbox" ng-class="dropClass" ng-accept="'text/csv'" accept=".csv" ng-model="multiple"><span>{{dropText}}</span></div>
+
+    <div class="edit">
+        <label for="fileToUpload">Or select a file</label>
+        <span id="fileInputContainer">
+            <a id="fileUploadDummy" class="btn btn-default" title="Choose File">Choose File</a>
+            <input type="file" class="fileUploadInput" name="fileUpload" accept=".csv" title="Choose File" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)">
+        </span>
+
+    </div>
+    <br />
+    <div ng-show="files.length">
+        <div ng-repeat="file in files.slice(0)" class="col-lg-3 info" id="tt">
+            <div id="test">
+                <a ng-click="removeElement($index)" id="minus">
+                    <i class="glyphicon glyphicon-minus"></i>
+                </a>
+            </div>
+            <span>{{file.webkitRelativePath || file.name}}</span>
+            (<span ng-switch="file.size > 1024*1024">
+                <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+            </span>)
+        </div>
+        <div class="row edit">
+            <span id="fileInputContainer" style="margin-top:25px;">
+                <a id="fileUploadDummy" class="btn btn-default" title="Upload">Upload</a>
+                <input type="button" class="fileUploadInput" id="fileToUpload" ng-click="uploadFile()" value="Upload" />
+            </span>
+        </div>
+        <br />
+        <div ng-show="progressVisible" style="margin-top:70px;">
+            <div class="percent">{{progress}}%</div>
+            <div class="progress-bar">
+                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
