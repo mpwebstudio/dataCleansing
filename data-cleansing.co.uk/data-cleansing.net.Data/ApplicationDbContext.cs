@@ -83,6 +83,8 @@ namespace data_cleansing.net.Data
 
         public IDbSet<GetFullDetailsPartialStreet> GetFullDetailsPartialStreet { get; set; }
 
+        public IDbSet<PreventApiFraud> PreventApiFraud { get; set; }
+
 
     }
 }

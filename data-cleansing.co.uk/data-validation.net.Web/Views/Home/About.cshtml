@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<table>
+    <tbody>
+        <tr>
+            <td><label for="company">Company:</label></td>
+            <td><input type="text" id="company"></td>
+        </tr>
+        <tr>
+            <td><label for="address1">Address 1:</label></td>
+            <td><input type="text" id="address1"></td>
+        </tr>
+        <tr>
+            <td><label for="address2">Address 2:</label></td>
+            <td><input type="text" id="address2"></td>
+        </tr>
+        <tr>
+            <td><label for="address3">Address 3:</label></td>
+            <td><input type="text" id="address3"></td>
+        </tr>
+        <tr>
+            <td><label for="city">Town:</label></td>
+            <td><input type="text" id="city"></td>
+        </tr>
+        <tr>
+            <td><label for="county">County:</label></td>
+            <td><input type="text" id="county"></td>
+        </tr>
+        <tr>
+            <td><label for="postcode">Postcode:</label></td>
+            <td><input type="text" id="postcode"><input type="button" value="Find"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+<script type="text/javascript" src="~/Scripts/JustData.js"></script>
+
+<script type="text/javascript">
+
+    function applyPostcodeLookup() {
+        pcl = new data8.postcodeLookupButton(
+            [
+                { element: 'company', field: 'organisation' },
+                { element: 'address1', field: 'line1' },
+                { element: 'address2', field: 'line2' },
+                { element: 'address3', field: 'line3' },
+                { element: 'city', field: 'town' },
+                { element: 'county', field: 'county' },
+                { element: 'postcode', field: 'postcode' }
+            ],
+            {
+                ajaxKey: 'A0lE89pLA8uQaAUbFgnvMS1iphcF23AO',
+                license: 'WebClickFull'
+            }
+        );
+        pcl.show();
+    }
+</script>
+
+<p><input type="button" class="button" value="Try it now!" onclick="applyPostcodeLookup(); alert('A &quot;Find&quot; button has now been added next to the Postcode field in the sample form above. Enter a postcode and click Find to try it out.');"></p>

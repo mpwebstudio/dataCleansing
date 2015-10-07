@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace data_validation.net.Web.Models
+﻿namespace data_validation.net.Web.ViewModels
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

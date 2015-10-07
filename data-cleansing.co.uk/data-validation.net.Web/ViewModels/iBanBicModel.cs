@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace data_validation.net.Web.Models
+﻿namespace data_validation.net.Web.ViewModels
 {
     public class iBanBicModel
     {
@@ -32,6 +27,8 @@ namespace data_validation.net.Web.Models
         public string Swift { get; set; }
 
         public string Postcode { get; set; }
+
+        public string IsValid { get; set; }
 
         
     }

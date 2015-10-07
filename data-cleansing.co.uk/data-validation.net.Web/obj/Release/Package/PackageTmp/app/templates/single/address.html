@@ -1,0 +1,67 @@
+﻿<div ng-controller="SingleAddressController">
+    <div class="form-group">
+
+        <h2 style="color:black">Single Address Validation</h2>
+
+    </div>
+
+    <div ng-show="cleansingProgress">
+        <img src="../../../Content/img/loading-gallery.gif" class="loading" />
+    </div>
+
+    <form class="form-horizontal container-fluid" name="addressValidation">
+        <br />
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Enter an Address</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required placeholder="street, postcode etc..." ng-model="validate">
+
+            </div>
+            <span class="edit"><button class="btn btn-default" ng-disabled="addressValidation.$invalid" ng-click="addressCleansing(validate,addressValidation); cleansingProgress = true">Find</button></span>
+        </div>
+    </form>
+
+    <div ng-show="show">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+
+                    <th class="col-lg-1">No:</th>
+                    <th class="col-lg-1">Number</th>
+                    <th class="col-lg-2">Street</th>
+                    <th class="col-lg-1">City</th>
+                    <th class="col-lg-1">Country</th>
+                    <th class="col-lg-1">Postcode</th>
+                    <th class="col-lg-2">Company</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="add in answer">
+                    <td>{{$index +1}}</td>
+                    <td>{{add.Flat}} {{add.BuildingNumber}} {{add.BuildingName}}</td>
+                    <td>{{add.Street}}</td>
+                    <td>{{add.City}} {{add.Locality}}</td>
+                    <td>{{add.Country}}</td>
+                    <td>{{add.PostCode}}</td>
+                    <td>{{add.OrganisationName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+    <!--<ul ng-show="show">
+        
+        <li ng-repeat="add in answer">
+            <span ng-style="customStyle">{{add.Flat}} {{add.BuildingNumber}} {{add.BuildingName}}, {{add.Street}},{{add.Locality}} {{add.City}} , {{add.PostCode}}</span>
+        </li>
+    </ul>-->
+
+
+    
+
+</div>

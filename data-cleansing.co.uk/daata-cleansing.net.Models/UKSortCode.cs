@@ -18,7 +18,7 @@ namespace data_cleansing.net.Models
         [StringLength(6)]
         public string BranchCode { get; set; }
         [Column(TypeName = "VARCHAR")]
-        [StringLength(32)]
+        [StringLength(62)]
         public string BankName { get; set; }
         [Column(TypeName = "VARCHAR")]
         [StringLength(85)]

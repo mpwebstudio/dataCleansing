@@ -56,6 +56,9 @@
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.5.7\lib\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -182,18 +185,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Cleansing\AddressCleansingController.cs" />
+    <Compile Include="Controllers\Cleansing\BicCleansingController.cs" />
+    <Compile Include="Controllers\Cleansing\CardCleansingController.cs" />
     <Compile Include="Controllers\Cleansing\EmailCleansingController.cs" />
-    <Compile Include="Controllers\Cleansing\PhoneCleansingController.cs" />
-    <Compile Include="Controllers\DataCleansing\DataCleansingLogich.cs" />
+    <Compile Include="Controllers\Cleansing\IbanCleansingController.cs" />
+    <Compile Include="Controllers\Cleansing\TelephoneCleansingController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\Deduplicate\DeduplicateController.cs" />
+    <Compile Include="Controllers\Helpers\BankValidationController.cs" />
     <Compile Include="Controllers\Helpers\CardType.cs" />
+    <Compile Include="Controllers\Helpers\ConversionController.cs" />
     <Compile Include="Controllers\Helpers\CreateInvoiceController.cs" />
     <Compile Include="Controllers\Helpers\CreditsDeduct.cs" />
     <Compile Include="Controllers\Helpers\CsvToDataTable.cs" />
+    <Compile Include="Controllers\Helpers\DataCleansingLogich.cs" />
     <Compile Include="Controllers\Helpers\DeduplicateHelper.cs" />
     <Compile Include="Controllers\Helpers\Email.cs" />
     <Compile Include="Controllers\Helpers\GetUserIP.cs" />
+    <Compile Include="Controllers\Helpers\IsoCountryCode.cs" />
     <Compile Include="Controllers\Helpers\IsValid.cs" />
     <Compile Include="Controllers\Helpers\Levenshtine.cs" />
     <Compile Include="Controllers\Helpers\PostCodeType.cs" />
@@ -203,21 +215,18 @@
     <Compile Include="Controllers\Helpers\TemporaryUser.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\Validation\AddressValidation\AddressController.cs" />
-    <Compile Include="Controllers\Validation\BankValidation\BankValidationController.cs" />
-    <Compile Include="Controllers\Validation\BankValidation\ConversionController.cs" />
-    <Compile Include="Controllers\Validation\BicValidation\BicController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\Validation\AddressValidation\AddressValidationController.cs" />
+    <Compile Include="Controllers\Validation\BicValidation\BicValidationController.cs" />
     <Compile Include="Controllers\Validation\CardValidation\CardValidationController.cs" />
-    <Compile Include="Controllers\WebValidation\AddressValidationController.cs" />
-    <Compile Include="Controllers\WebValidation\BicValidationController.cs" />
-    <Compile Include="Controllers\WebValidation\CreditCardValidationController.cs" />
-    <Compile Include="Controllers\WebValidation\EmailValidationController.cs" />
-    <Compile Include="Controllers\WebValidation\IbanValidationController.cs" />
-    <Compile Include="Controllers\WebValidation\TelephoneValidationController.cs" />
+    <Compile Include="Controllers\Validation\EmailValidation\EmailValidationController.cs" />
+    <Compile Include="Controllers\Validation\IbanValidation\IbanValidationController.cs" />
+    <Compile Include="Controllers\Validation\TelephoneValidation\TelephoneValidationController.cs" />
     <Compile Include="Enum\BulkChoise.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AccountModels.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\BicInfoModel.cs" />
     <Compile Include="ViewModels\BulkIbanModel.cs" />
@@ -225,12 +234,11 @@
     <Compile Include="ViewModels\ContactUsModel.cs" />
     <Compile Include="ViewModels\CustomerUploadModel.cs" />
     <Compile Include="ViewModels\DataCleansing\AddressModel.cs" />
-    <Compile Include="ViewModels\DeduplicateModel.cs" />
+    <Compile Include="ViewModels\ForgotenModel.cs" />
     <Compile Include="ViewModels\GetIban.cs" />
     <Compile Include="ViewModels\GetSwift.cs" />
     <Compile Include="ViewModels\IbanBankCode.cs" />
     <Compile Include="ViewModels\iBanBicModel.cs" />
-    <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\JsonPostCodeSearch.cs" />
     <Compile Include="ViewModels\Logger.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -242,8 +250,11 @@
     <Compile Include="ViewModels\PhoneValidation.cs" />
     <Compile Include="ViewModels\RawSortCodeModels.cs" />
     <Compile Include="ViewModels\ResultForPostCode.cs" />
+    <Compile Include="ViewModels\Spa\BillingInfoModel.cs" />
     <Compile Include="ViewModels\Spa\EditUserModel.cs" />
+    <Compile Include="ViewModels\Spa\GetCreditsModel.cs" />
     <Compile Include="ViewModels\SwiftCodeModel.cs" />
+    <Compile Include="ViewModels\Spa\UserDataModel.cs" />
     <Compile Include="ViewModels\UserDetailsModel.cs" />
     <Compile Include="ViewModels\UserIPModel.cs" />
     <Compile Include="ViewModels\UserPaymentDetails.cs" />
@@ -573,7 +584,7 @@
     <Content Include="app\templates\bulk\bulkCard.html" />
     <Content Include="app\templates\bulk\bulkEmail.html" />
     <Content Include="app\templates\bulk\bulkIban.html" />
-    <Content Include="app\templates\bulk\bulkPhone.html" />
+    <Content Include="app\templates\bulk\bulkTelephone.html" />
     <Content Include="app\templates\buy.html" />
     <Content Include="app\templates\deduplicate.html" />
     <Content Include="app\templates\editBilling.html" />
@@ -586,7 +597,7 @@
     <Content Include="app\templates\single\card.html" />
     <Content Include="app\templates\single\email.html" />
     <Content Include="app\templates\single\iban.html" />
-    <Content Include="app\templates\single\phone.html" />
+    <Content Include="app\templates\single\telephone.html" />
     <Content Include="app\templates\success.html" />
     <Content Include="app\templates\topUp.html" />
     <Content Include="Content\app.css" />
@@ -752,14 +763,15 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\TCCEB.TTF" />
     <Content Include="Content\img\address.psd" />
+    <None Include="Properties\PublishProfiles\publich.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\canvasjs.min.js" />
     <Content Include="Scripts\controller\AddressCleansingController.js" />
     <Content Include="Scripts\controller\CalculatorController.js" />
-    <Content Include="Scripts\controller\DeduplicationController.js" />
+    <Content Include="Scripts\controller\DeduplicateController.js" />
     <Content Include="Scripts\controller\DropDownMenuController.js" />
     <Content Include="Scripts\controller\EmailCleansingController.js" />
-    <Content Include="Scripts\controller\PhoneCleansingController.js" />
+    <Content Include="Scripts\controller\TelephoneCleansingController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1056,10 +1068,13 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\templates\addressCleansing.html" />
+    <Content Include="Scripts\templates\deduplicate.html" />
     <Content Include="Scripts\templates\emailCleansing.html" />
-    <Content Include="Scripts\templates\phoneCleansing.html" />
+    <Content Include="Scripts\templates\telephoneCleansing.html" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1071,7 +1086,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -1089,13 +1103,11 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\AddressCleansing\Index.cshtml" />
     <Content Include="Views\AddressValidation\Index.cshtml" />
@@ -1105,7 +1117,7 @@
     <Content Include="Views\BicValidation\Index.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\ContactUs\SendMessage.cshtml" />
-    <Content Include="Views\CreditCardValidation\Index.cshtml" />
+    <Content Include="Views\CardValidation\Index.cshtml" />
     <Content Include="Views\DataCleansing\Index.cshtml" />
     <Content Include="Views\EmailCleansing\Index.cshtml" />
     <Content Include="Views\EmailValidation\Index.cshtml" />
@@ -1114,7 +1126,7 @@
     <Content Include="Views\Payment\SuccessView.cshtml" />
     <Content Include="Views\Support\Index.cshtml" />
     <Content Include="Views\TelephoneValidation\Index.cshtml" />
-    <Content Include="Views\PhoneCleansing\Index.cshtml" />
+    <Content Include="Views\TelephoneCleansing\Index.cshtml" />
     <Content Include="Scripts\lib\angular\angular-animate.min.js.map" />
     <Content Include="Scripts\lib\angular\angular-cookies.min.js.map" />
     <Content Include="Scripts\lib\angular\angular-loader.min.js.map" />
@@ -1126,17 +1138,18 @@
     <Content Include="Scripts\lib\angular\angular.min.js.map" />
     <Content Include="Scripts\lib\angular\errors.json" />
     <Content Include="Scripts\lib\angular\version.json" />
+    <Content Include="Views\IbanValidation\Index.cshtml" />
+    <Content Include="Views\Deduplicate\Index.cshtml" />
+    <Content Include="Views\Home\TermsofUse.cshtml" />
+    <Content Include="Views\Account\Forgot.cshtml" />
+    <Content Include="Views\Shared\_Integration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\filter\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\AppCleansing\" />
-    <Folder Include="Controllers\AppValidation\" />
-    <Folder Include="Controllers\WebCleansing\" />
     <Folder Include="Scripts\factories\" />
     <Folder Include="Scripts\filter\" />
     <Folder Include="Tuploads\" />
-    <Folder Include="Views\RandomGenerator\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

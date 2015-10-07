@@ -14,19 +14,6 @@ namespace data_validation.net.Web.Controllers
     {
         public ActionResult Index()
         {
-
-            //using (var context = new ApplicationDbContext())
-            //{
-            //    var clientIdParameter = new SqlParameter("@PostCode", "CH5 4YL");
-            //    var number = new SqlParameter("@Number", "9");
-
-            //    var result = context.Database
-            //        .SqlQuery<GetFullDetailsPlusStreet>("GetFullDetailsPlusStreet @PostCode, @Number", clientIdParameter, number)
-            //        .FirstOrDefault();
-
-            //    ViewBag.Test = result.BuildingNumber;
-            //}
-
             return View();
         }
 
@@ -68,11 +55,6 @@ namespace data_validation.net.Web.Controllers
             return Json("bad", JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-
-
         //Old
 
         public ActionResult About()
@@ -86,6 +68,11 @@ namespace data_validation.net.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult TermsofUse()
+        {
             return View();
         }
     }

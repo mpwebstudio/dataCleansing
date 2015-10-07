@@ -132,6 +132,11 @@ namespace data_cleansing.net.Data
             get { return this.GetRepository<PhoneCleansingHistory>(); }
         }
 
+        public IRepository<PreventApiFraud> PreventApiFraud
+        {
+            get { return this.GetRepository<PreventApiFraud>(); }
+        }
+
         public IRepository<Profile> Profile
         {
             get { return this.GetRepository<Profile>(); }

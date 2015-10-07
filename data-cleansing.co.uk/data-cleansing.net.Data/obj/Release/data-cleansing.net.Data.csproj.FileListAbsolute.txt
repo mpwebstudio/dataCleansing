@@ -1,0 +1,16 @@
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\data-cleansing.net.Data.dll.config
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\data-cleansing.net.Data.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\data-cleansing.net.Data.pdb
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\daata-cleansing.net.Models.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\EntityFramework.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\daata-cleansing.net.Models.pdb
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\EntityFramework.xml
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\obj\Release\data-cleansing.net.Data.csprojResolveAssemblyReference.cache
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\obj\Release\data-cleansing.net.Data.dll
+C:\webPages\CodeFirst\data-cleansing.co.uk\data-cleansing.net.Data\obj\Release\data-cleansing.net.Data.pdb

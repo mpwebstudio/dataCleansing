@@ -47,5 +47,28 @@ namespace data_validation.net.Web.Controllers.Helpers
 
             return number;
         }
+
+        private static string RandomPasswordString(int size)
+        {
+            var chars = "abcdefghijkmlnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var letter = new char[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                letter[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(letter);
+
+            return finalString;
+        }
+
+        public static string RandomPassword()
+        {
+            var number = RandomPasswordString(10);
+
+            return number;
+        }
     }
 }

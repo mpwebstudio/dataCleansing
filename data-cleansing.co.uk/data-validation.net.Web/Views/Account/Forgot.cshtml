@@ -1,0 +1,36 @@
+﻿@model data_validation.net.Web.ViewModels.ForgotenModel
+
+@{
+    ViewBag.Title = "Forgot Password";
+}
+
+<div class="row" style="background-color:#0b2025; height:535px; margin-top: -50px;">
+
+    <div class="container">
+
+        <div class="col-lg-2 registerForm">
+
+            <div class="text-center" style="padding-top:10px;"><h2 class="fontFamily" style="font-size:24px;">Forgotten Password</h2></div>
+
+            @using (Html.BeginForm("Forgot", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group has-feedback">
+                    @Html.LabelFor(m => m.Email, new { @class = "sr-only" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "email", @placeholder = "Email address" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                    <span class="form-control-feedback"><i class="fa fa-at"></i></span>
+                </div>
+                <div class="check-holder">
+                    <div style="color:red;font-size:12px;">@Html.ValidationSummary()</div>
+
+                </div>
+                <br />
+                <input type="submit" class="btn btn-lg btn-block btn-blue submitter fontFamily" style="color:#fff" value="Send">
+                @ViewBag.Success;
+            }
+            <br />
+        </div>
+    </div>
+</div>

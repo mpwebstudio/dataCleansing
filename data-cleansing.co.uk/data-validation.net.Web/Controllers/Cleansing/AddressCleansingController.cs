@@ -1,4 +1,4 @@
-﻿using data_validation.net.Web.Models.DataCleansing;
+﻿using data_validation.net.Web.ViewModels.DataCleansing;
 using data_validation.net.Web.Controllers;
 using Ionic.Zip;
 using System;
@@ -11,6 +11,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using data_validation.net.Web.Controllers.Helpers;
+using data_cleansing.net.Models;
 
 namespace data_validation.net.Web.Controllers.Cleansing
 {
@@ -34,7 +35,7 @@ namespace data_validation.net.Web.Controllers.Cleansing
             fileToUpload.SaveAs(targetFolder);
             var csvToData = new CsvToDataTable();
             var csvData = csvToData.GetDataTabletFromCSVFile(targetFolder, "address");
-            var tmpResults = new DataCleansing.DataCleansingLogich();
+            var tmpResults = new Helpers.DataCleansingLogich();
 
             fileLocation.Add(targetFolder);
             result.Add(fileLocation);
@@ -68,45 +69,44 @@ namespace data_validation.net.Web.Controllers.Cleansing
                 }
             }
             return Json(result, JsonRequestBehavior.AllowGet);
-
         }
 
-        //Application#/addressCleansing
-        public ActionResult BulkCleansing(IEnumerable<HttpPostedFileBase>fileToUpload)
+        [HttpPost]
+        [Authorize]
+        public ActionResult BulkAddress(IEnumerable<HttpPostedFileBase> fileToUpload)
         {
-            if(User.Identity.IsAuthenticated)
-            {
-                return new HttpStatusCodeResult(404, "Item Not Found");
-            }
-
             var outputStream = new MemoryStream();
-            int i = 0;
-            var dataCleansing = new DataCleansing.DataCleansingLogich();
+            int foundAddress = 0;
+            int notFoundAddress = 0;
+            int totalRecords = 0;
             using (var zip = new ZipFile())
             {
-                string time = "TemporaryUser" + DateTime.Now.Ticks;
+                string time = User.Identity.Name + DateTime.Now.Ticks;
                 Directory.CreateDirectory(Server.MapPath("~/Tuploads/") + time);
                 string folder = Server.MapPath("~/Tuploads/") + time + "/";
                 foreach (var csvFile in fileToUpload)
                 {
                     var results = new List<AddressModel>();
-
-                    if (csvFile.ContentType.ToString() != "application/vnd.ms-excel")
-                    {
-                        return new HttpStatusCodeResult(402, "Wrong File format");
-                    }
                     string targetFolder = folder + csvFile.FileName;
                     csvFile.SaveAs(targetFolder);
                     var csvToData = new CsvToDataTable();
-                    var csvData = csvToData.GetDataTabletFromCSVFile(targetFolder,"address");
+                    var csvData = csvToData.GetDataTabletFromCSVFile(targetFolder, "address");
                     //Billing 
                     int records = csvData.Rows.Count;
 
-                    if(records > 10)
+                    var helper = new Helpers.CreditsDeduct();
+                    //if more than 1 file submited
+                    totalRecords += records;
+
+                    var resul = helper.IsValid(User.Identity.Name, records, "", "bulk", "address");
+
+                    if (resul == false)
                     {
-                        return new HttpStatusCodeResult(403, "More than 10 records");
+                        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        return Json(404, JsonRequestBehavior.AllowGet);
                     }
-                                        
+
+                    //If user has enough credits start cleansing
                     foreach (DataRow res in csvData.Rows)
                     {
                         StringBuilder tempString = new StringBuilder();
@@ -119,30 +119,46 @@ namespace data_validation.net.Web.Controllers.Cleansing
                             }
                             tempString = tempString.Append(item + ",");
                         }
-                        
-                        var tempeResult = dataCleansing.Cleansing(tempString.ToString().Substring(0, tempString.Length - 1));
+                        var dataCleansing = new DataCleansingLogich();
+                        var tempResult = dataCleansing.Cleansing(tempString.ToString().Substring(0, tempString.Length - 1)).FirstOrDefault();
 
-                        foreach (var tempResult in tempeResult)
+                        if (tempResult.IsValid == "Corrected")
                         {
-
-                            results.Add(new AddressModel
-                                {
-                                    AdministrativeCounty = tempResult.AdministrativeCounty,
-                                    BuildingName = tempResult.BuildingName,
-                                    BuildingNumber = tempResult.BuildingNumber,
-                                    City = tempResult.City,
-                                    Flat = tempResult.Flat,
-                                    IsValid = tempResult.IsValid,
-                                    Locality = tempResult.Locality,
-                                    PostCode = tempResult.PostCode,
-                                    Street = tempResult.Street,
-                                    TraditionalCounty = tempResult.TraditionalCounty,
-                                });
-                            break;
+                            foundAddress++;
                         }
+                        else
+                        {
+                            notFoundAddress++;
+                        }
+
+                        results.Add(new AddressModel
+                        {
+                            AdministrativeCounty = tempResult.AdministrativeCounty,
+                            BuildingName = tempResult.BuildingName,
+                            BuildingNumber = tempResult.BuildingNumber,
+                            City = tempResult.City,
+                            Flat = tempResult.Flat,
+                            IsValid = tempResult.IsValid,
+                            Locality = tempResult.Locality,
+                            PostCode = tempResult.PostCode,
+                            Street = tempResult.Street,
+                            TraditionalCounty = tempResult.TraditionalCounty
+                        });
                     }
 
+                    this.Data.AddressCleansingHistory.Add(new AddressCleansingHistory
+                    {
+                        AddressCorrected = foundAddress,
+                        AddressNotFound = notFoundAddress,
+                        RecordsUploaded = totalRecords,
+                        UserName = User.Identity.Name,
+                        DateSubmited = DateTime.Now
+                    });
+
+                    this.Data.SaveChanges();
+
                     MemoryStream output = new MemoryStream();
+                    int i = 0;
 
                     if (results.Count() > 0)
                     {
@@ -166,7 +182,7 @@ namespace data_validation.net.Web.Controllers.Cleansing
                     //If any records write them to csv file and return to user
                     if (fileToUpload.Count() == 1)
                     {
-                        return File(output, "text/coma-separated-values", "data-cleansing.co.uk" + "_" + DateTime.Now.Ticks + ".csv");
+                        return File(output, "text/coma-separated-values", User.Identity.Name + "_" + DateTime.Now.Ticks + ".csv");
                     }
                     else
                     {
@@ -188,9 +204,22 @@ namespace data_validation.net.Web.Controllers.Cleansing
 
                 outputStream.Position = 0;
                 outputStream.Seek(0, SeekOrigin.Begin);
-                return File(outputStream, "application/octet-stream", "data-cleansing.co.uk.zip");
+                return File(outputStream, "application/octet-stream", "filename.zip");
+
             }
 
+        }
+
+        [Authorize]
+        public JsonResult Chart()
+        {
+            var res = new List<AddressCleansingHistory>();
+
+            var result = this.Data.AddressCleansingHistory.All().Where(x => x.UserName == User.Identity.Name).OrderByDescending(x => x.Id).FirstOrDefault();
+
+            res.Add(result);
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
     }
 }

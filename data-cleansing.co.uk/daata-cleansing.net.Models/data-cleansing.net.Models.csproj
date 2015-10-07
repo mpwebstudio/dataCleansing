@@ -84,6 +84,7 @@
     <Compile Include="Invoice.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="PhoneCleansingHistory.cs" />
+    <Compile Include="PreventApiFraud.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawSortCode.cs" />

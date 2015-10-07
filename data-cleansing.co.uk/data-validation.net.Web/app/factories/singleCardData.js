@@ -9,7 +9,10 @@ dataApp.factory('singleCardData', function ($http) {
                 successcb(data);
             })
             .error(function (data, status, headers, config) {
-                console.log(data);
+                if(data == 404)
+                    alert("You don't have enough credits! Please Top Up.")
+                else if(data == 403)
+                    alert("You have enter a non digit symbol!")
             })
         }
     }

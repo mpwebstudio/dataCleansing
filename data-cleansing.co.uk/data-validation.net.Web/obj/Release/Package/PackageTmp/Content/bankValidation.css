@@ -1,0 +1,58 @@
+.f_table{
+	border-collapse:separate;
+	background-color:#ebebeb;
+}
+
+tbody{
+	display:table-row-group;
+	vertical-align:middle;
+}
+tr{
+	display:table-row;
+	vertical-align:inherit;
+}
+
+.f_table tbody tr th.subForums{
+	background-color:#b6c4cc;
+	text-align:left;
+	border-right:1px solid #fff;
+	color:#1c2837;
+	font-size:11px;
+	font-family:Arial;
+	font-weight:bold;
+	margin:0;
+	padding:5px;
+}
+.f_table tbody tr th.subForums2{
+	background-color:#d2e0e8;
+	text-align:left;
+	border-right:1px solid #fff;
+	color:#1c2837;
+	font-size:11px;
+	font-family:Arial;
+	font-weight:bold;
+	margin:0;
+	padding:5px;
+}
+
+.f_row_inner{
+	display:table-cell;
+	border-right:1px solid #e4ebf3;
+	border-left:1px solid #e3e3e3;
+	border-bottom:1px solid #fff;
+	padding:5px;
+	background:#fafbfc;
+	vertical-align:top;
+}
+
+.f_table tbody tr th.subForums_stats2{
+	background-color:#d2e0e8;
+	text-align:left;
+	border:1px solid #d2e0e8;
+	color:#1c2837;
+	font-size:11px;
+	font-family:Arial;
+	font-weight:bold;
+	margin:0;
+	padding:5px;
+}

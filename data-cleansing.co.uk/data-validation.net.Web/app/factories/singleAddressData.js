@@ -2,15 +2,16 @@
 
 dataApp.factory('singleAddressData', function ($http) {
     return {
-        getData: function (id, successcb) {
-            var url = '/Address/SingleAddress/';
-            $http.post(url, { id : id })
+        getData: function (id, successcb,error) {
+            var url = '/AddressValidation/GetAddress/';
+            $http.post(url + id )
             .success(function (data, status, headers, config) {
                 successcb(data);
             })
             .error(function (data, status, headers, config) {
-                
-            })
+                               
+                error(status);
+              })
         }
     }
 })

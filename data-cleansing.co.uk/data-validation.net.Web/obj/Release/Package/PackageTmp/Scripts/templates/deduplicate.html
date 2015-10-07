@@ -1,0 +1,102 @@
+﻿<div ng-controller="DeduplicateController">
+
+    <div class="col-lg-4">
+        Phone cleansing integrated as dropdown menu. Easy and fast for integration on any platform. Още нещо по възможност.
+    </div>
+    <div class="col-lg-6">
+        <div ng-show="cleansingProgress">
+            <img src="../../../Content/img/loading-gallery.gif" class="loading" />
+        </div>
+
+        <div ng-show="warning">
+            <label> Warning you don't have enought credits to compleate this task!</label>
+        </div>
+
+        <div ng-show="stepOne">
+            <label for="fileToUpload">Select a File to Upload</label><br />
+            <div id="dropbox" class="dropbox" ng-class="dropClass" ng-accept="'text/csv'" accept=".csv" ng-model="multiple"><span>{{dropText}}</span></div>
+
+            <div class="edit2">
+                <label for="fileToUpload">Or select a file</label>
+                <span id="fileInputContainer">
+                    <a id="fileUploadDummy" class="btn btn-default" title="Choose File">Choose File</a>
+                    <input type="file" class="fileUploadInput2" name="fileUpload" accept=".csv" title="Choose File" ng-model-instant multiple id="fileToUpload" onchange="angular.element(this).scope().setFiles(this)">
+                </span>
+
+            </div>
+            <br />
+            <div ng-show="files.length">
+                <div ng-repeat="file in files.slice(0)" class="col-lg-3 info" id="tt">
+                    <div id="test">
+                        <a ng-click="removeElement($index)" id="minus">
+                            <i class="glyphicon-minus" id="minusGly"></i>
+                        </a>
+                    </div>
+                    <span>{{file.webkitRelativePath || file.name}}</span>
+                    (<span ng-switch="file.size > 1024*1024">
+                        <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                        <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                    </span>)
+                </div>
+                <div class="row edit2">
+                    <span id="fileInputContainerUpload">
+                        <a id="fileUploadDummy" class="btn btn-default" title="Upload">Upload</a>
+                        <input type="button" class="fileUploadInput" id="fileToUpload" ng-click="uploadFile()" value="Upload" />
+                    </span>
+                </div>
+                <br />
+                <div ng-show="progressVisible" style="margin-top:70px;">
+                    <div class="percent">{{progress}}%</div>
+                    <div class="progress-bar">
+                        <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-show="stepTwo">
+            <label>Please select match criteria:</label>
+            <div class="">
+                <div>
+                    <input id="exactMatch" type="radio" name="matchCriteria" ng-model="matchCriteria" value="1" checked="checked"><label for="radio1">Exact match</label>
+                </div>
+                <div>
+                    <input id="fuzzyLogic" type="radio" name="matchCriteria" ng-model="matchCriteria" value="2"><label for="radio2">Fuzzy logic</label>
+                </div>
+            </div>
+            <label>We found the following columns:</label>
+            <div ng-repeat="col in columns">
+                <div class="col-lg-5 infoDeduplicate">
+                    <input type="checkbox" checklist-model="user.columns" checklist-value="col" />
+                    <label for="{{col}}">{{col}}</label>
+                </div>
+            </div>
+            <div class="clearfix">
+
+            </div>
+            <div class="edit2">
+                <span id="fileInputContainer" style="margin-top:25px;">
+                    <a id="fileUploadDummy" class="btn btn-default" title="Upload">Next</a>
+                    <input type="button" class="fileUploadInput" id="fileToUpload" ng-click="submitFile(matchCriteria,user)" value="Upload" />
+                </span>
+            </div>
+            <input type="hidden" value="{{time}}" ng-model="time" id="{{time}}" />
+        </div>
+    </div>
+    <div ng-show="stepThree" class="row col-lg-11">
+        <div id="basic_example" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" onselectstart='return false;'></div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="edit2">
+                <span id="fileInputContainer" style="margin-top:25px;">
+                    <a id="fileUploadDummy" class="btn btn-default" title="Upload">Download</a>
+                    <input type="button" class="fileUploadInput" id="fileToUpload" ng-click="downloadFile(matchCriteria,user)" value="Upload" />
+                </span>
+            </div>
+        </div>
+    </div>
+    <div ng-show="stepFour">
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    </div>
+</div>

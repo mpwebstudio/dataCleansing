@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace data_validation.net.Web.Models
+﻿namespace data_validation.net.Web.ViewModels
 {
+    using System;
     public class Logger
     {
         public static string LogDirectoryPath = Environment.CurrentDirectory;

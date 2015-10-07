@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-
-namespace data_validation.net.Web.Models.DataCleansing
+﻿namespace data_validation.net.Web.ViewModels.DataCleansing
 {
     public class AddressModel 
     {

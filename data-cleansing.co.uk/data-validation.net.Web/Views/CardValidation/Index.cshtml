@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Debit Credit Card validation by Data Cleansing";
+}
+
+<div class="app-header" style="margin-top:-50px">
+    <div class="container">
+        <div class="text-center">
+            <h1 style="font-family:h1Family">
+                PAYMENT CARD VAL<span style="color:red; font:bolder">I</span>DATION
+</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="part text ">
+
+        <p><h2>Real-time Card Payment Validation</h2></p>
+
+        <p>Our Card payment validation and cleansing services and solutions enable the managing of large volumes of payments, assuring faster and accurate payments without any inconvenience to you customers, suppliers or business partners. It takes only a few minutes, for our services to be installed and integrated into your system.</p>
+    </div>
+
+    <h3>Our comprehesive validation include:</h3>
+
+        <ul>
+            <li>Prefix check</li>
+            <li>Length check</li>
+            <li>Check Digit Scheme (ISO 2894/ANSI 4.13)</li>
+        </ul>
+    <h3>Where to use?</h3>
+
+    <ul>
+        <li>Shopping cart solutions</li>
+        <li>Taking payments over the phone</li>
+        <li>Age verification</li>
+    </ul>
+
+    <div class="row">
+        <br />
+        <div class="text-center">
+            <h2 class="blue">Inline validation plus validation message</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="example">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <form id="search" onsubmit="return false" class="navbar-form">
+                    <div id="cardNumber" style="display:block" class="form-group has-feedback">
+                        <input type="text" id="cardNumb" value="" class="form-control" placeholder="Enter a credit / debit card number" />
+                        <span id="cardTypePic" class="form-control-feedback"><i id="cardPic"></i></span>
+                        <button class="btn btn-success" onclick="getResults(apiNumber,1)">Validate</button>
+                    </div>
+                    <div id="cardResult" style="display:none">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <h2 class="blue">Inline validation plus picture</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="example">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <form id="search" onsubmit="return false" class="navbar-form">
+                    <div id="cardNumber" style="display:block" class="form-group">
+                        <input type="text" id="cardNumbT" value="" class="form-control" on="clear()" placeholder="Enter a credit / debit card number" />
+                        <button id="button-findiban" class="btn btn-success" onclick="getResults(apiNumber,2)">Validate</button>
+                    </div>
+                    <div class="pictures">
+                        <img id="visa" src="~/Content/img/cardType/visa.png" />
+                        <img id="mastercard" src="~/Content/img/cardType/master.png" /> 
+                        <img id="maestro" src="~/Content/img/cardType/maestro.png" />
+                        <img id="visaE" src="~/Content/img/cardType/visaE.png" />
+                        <img id="amex" src="~/Content/img/cardType/amex.png" />
+                        <img id="diners" src="~/Content/img/cardType/diner.png" />
+                        <img id="discover" src="~/Content/img/cardType/discover.png" />
+                        <img id="jcb" src="~/Content/img/cardType/jcb.png" />
+                    </div>
+                    <div id="cardResults" style="display:none">
+                    </div>
+                </form>
+            </div>
+            @*<div class="col-lg-4">Address finder integrated as dropdown menu. Easy and fast for integration on any platform. Още нещо по възможност.</div>*@
+        </div>
+    </div>
+
+</div>
+
+@Html.Partial("_Integration")
+<script src="~/javascript/cardValidation.js"></script>
+<script type="text/javascript">
+    var apiNumber = '12345678';
+</script>
+

@@ -1,0 +1,42 @@
+﻿<div ng-controller="SinglePhoneController">
+    <div class="form-group">
+        <h2 style="color:black">Single Phone Validation</h2>
+    </div>
+
+    <form class="form-horizontal container-fluid" name="phoneValidation">
+        <br />
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Enter an phone number</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required placeholder="UK phone number..." ng-model="validate">
+
+            </div>
+            <span class="edit"><button class="btn btn-default" ng-disabled="phoneValidation.$invalid" ng-click="phoneCleansing(validate,phoneValidation)">Find</button></span>
+        </div>
+    </form>
+
+
+    <div ng-show="table">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+
+                    <th class="col-lg-1">No:</th>
+                    <th class="col-lg-2">Number</th>
+                    <th class="col-lg-1">Area</th>
+                    <th class="col-lg-1">Is valid</th>
+                    <th class="col-lg-1">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="add in results">
+                    <td>{{$index +1}}</td>
+                    <td>{{add.Number}}</td>
+                    <td>{{add.Area}}</td>
+                    <td>{{add.IsValid}}</td>
+                    <td><a ng-click="deleteRecord($index, add)">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

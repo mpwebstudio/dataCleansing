@@ -11,13 +11,21 @@ namespace data_cleansing.net.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
+            if (authenticationType == null)
+            {
+                // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+                var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+                // Add custom user claims here
+                return userIdentity;
+            }
+
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            var userIdentity2 = await manager.CreateIdentityAsync(this, authenticationType);
             // Add custom user claims here
-            return userIdentity;
+            return userIdentity2;
+
         }
     }
 }

@@ -101,7 +101,7 @@ namespace data_validation.net.Web.Controllers.Helpers
             return csvData;
         }
 
-        public string RemoveSpecialCharacters(string str)
+        private string RemoveSpecialCharacters(string str)
         {
             StringBuilder sb = new StringBuilder();
             foreach (char c in str)
@@ -114,7 +114,7 @@ namespace data_validation.net.Web.Controllers.Helpers
             return sb.ToString();
         }
 
-        public string RemoveSpecialCharactersEmail(string str)
+        private string RemoveSpecialCharactersEmail(string str)
         {
             StringBuilder sb = new StringBuilder();
             foreach (char c in str)
@@ -127,7 +127,7 @@ namespace data_validation.net.Web.Controllers.Helpers
             return sb.ToString();
         }
 
-        public string RemoveSpecialCharactersDeduplicate(string str)
+        private string RemoveSpecialCharactersDeduplicate(string str)
         {
             StringBuilder sb = new StringBuilder();
             foreach (char c in str)

@@ -1,18 +1,19 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using data_validation.net.Web.Models;
-using data_cleansing.net.Models;
-
-namespace data_validation.net.Web.Controllers
+﻿namespace data_validation.net.Web.Controllers
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using data_validation.net.Web.ViewModels;
+    using data_cleansing.net.Models;
+
     [Authorize]
     public class AccountController : BaseController
     {
@@ -165,7 +166,7 @@ namespace data_validation.net.Web.Controllers
                             UserName = model.UserName,
                             DatePurchase = DateTime.Now,
                             DateExpire = DateTime.Now.AddYears(1),
-                            Credits = 12,
+                            Credits = 100,
                             ApiNumber = apiNumber
                         });
 
@@ -453,6 +454,7 @@ namespace data_validation.net.Web.Controllers
 
             base.Dispose(disposing);
         }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

@@ -16,25 +16,23 @@ namespace data_validation.net.Web.Controllers.Helpers
             string ipNumber = string.Empty;
 
             bool tUser = false;
-            int i = 0;
+
             var helper = new Helpers.CreditsDeduct();
             foreach (var ipResult in ipAddress)
             {
-                if (i < 1)
+
+                if (ipResult.Host == "data-cleansing.net")
                 {
-                    if (ipResult.Host == "data-cleansing.net")
-                    {
-                        tUser = helper.CheckTemporaryUser(ipResult.IP, 1);
-                    }
-                    else
-                    {
-                        host = ipResult.Host;
-                        ipNumber = ipResult.IP;
-                        
-                        tUser = helper.IsValidApiUser(ipResult.IP, ipResult.Host, apiNumber, 6, keyWord, "single", service);
-                        i++;
-                    }
+                    tUser = helper.CheckTemporaryUser(ipResult.IP, 1);
                 }
+                else
+                {
+                    host = ipResult.Host;
+                    ipNumber = ipResult.IP;
+
+                    tUser = helper.IsValidApiUser(ipResult.IP, ipResult.Host, apiNumber, 6, keyWord, "single", service);
+                }
+                break;
             }
 
             return tUser;

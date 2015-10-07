@@ -17,9 +17,13 @@ dataApp.controller('SingleAddressController',
                     $scope.answer = allData;
                     $scope.show = true;
                     $scope.cleansingProgress = false;
+                }, 
+                function (data) {
+                    if (data == 400) {
+                        alert("You don't have enough credits! Please Top Up.");
+                    }
+                    $scope.cleansingProgress = false;
                 })
             }
-
-            
         }
     })

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(data_validation.net.Web.Startup))]
+[assembly: OwinStartupAttribute("web",typeof(data_validation.net.Web.Startup))]
 namespace data_validation.net.Web
 {
     public partial class Startup

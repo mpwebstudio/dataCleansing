@@ -45,6 +45,8 @@ namespace data_cleansing.net.Data
 
         IRepository<Profile> Profile { get; }
 
+        IRepository<PreventApiFraud> PreventApiFraud { get; }
+
         IRepository<RawSortCode> RawSortCode { get; }
 
         IRepository<Subscribe> Subscribe { get; }

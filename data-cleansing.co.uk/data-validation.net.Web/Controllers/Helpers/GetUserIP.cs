@@ -1,4 +1,4 @@
-﻿using data_validation.net.Web.Models;
+﻿using data_validation.net.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

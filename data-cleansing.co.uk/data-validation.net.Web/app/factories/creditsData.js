@@ -8,7 +8,7 @@
                     successcb(data);
                 })
                 .error(function (data, status, headers, config) {
-                    $log.error(data);
+                    
                 });
         }
     }

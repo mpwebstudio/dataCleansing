@@ -14,60 +14,87 @@
 
     public class CreditsDeduct
     {
-        public bool IsValid(string name, int credits, string id, string type, string service)
+     
+        private string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+        
+        public bool CheckForFraud(string userName, string ip, string host)
         {
-            int res = 0;
-
-            using (var context = new ApplicationDbContext())
+            int result = 0;
+            using (SqlConnection dbConnection = new SqlConnection(connectionString))
             {
-                var namePar = new SqlParameter("@userName", name);
-                var creditsPar = new SqlParameter("@credits", credits);
-                var typePar = new SqlParameter("@type", type);
-                var serchKey = new SqlParameter("@searchKeyword", id);
-                var servicePar = new SqlParameter("@service", service);
-
-                var tRes = context.Database.SqlQuery<CheckWhenUserIsAuthenticated>("CheckWhenUserIsAuthenticated2 @userName, @credits, @type, @searchKeyword, @service", namePar, creditsPar, typePar, serchKey, servicePar);
-
-                foreach (var item in tRes)
-                {
-                    res = item.ReturnValue;
-                    break;
-                }
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("CheckFraud", dbConnection);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter("@return", System.Data.SqlDbType.Int);
+                param.Direction = System.Data.ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(param);
+                cmd.Parameters.Add(new SqlParameter("@userName", userName));
+                cmd.Parameters.Add(new SqlParameter("@ip", ip));
+                cmd.Parameters.Add(new SqlParameter("@host", host));
+                cmd.ExecuteNonQuery();
+                result = Convert.ToInt32(param.Value);
             }
 
-            if (res == 1)
+            if(result == 1)
             {
                 return true;
             }
 
-            return true;
+            return false;
         }
-
-        public bool IsValidApiUser(string ip, string host, string apiNumber, int num, string id, string type, string service)
+        
+        
+        public bool IsValid(string name, int credits, string searchKeyword, string type, string service)
         {
-            
-            int res = 0;
-
-            using (var context = new ApplicationDbContext())
+            int result = 0;
+            using (SqlConnection dbConnection = new SqlConnection(connectionString))
             {
-                var namePar = new SqlParameter("@ip", ip.TrimEnd());
-                var creditsPar = new SqlParameter("@credits", num);
-                var apinumberPar = new SqlParameter("@apiNumber", apiNumber);
-                var hostPar = new SqlParameter("@host", host);
-                var typePar = new SqlParameter("@type", type);
-                var serchKey = new SqlParameter("@searchKeyword", id);
-                var servicePar = new SqlParameter("@service", service);
-
-                var tRes = context.Database.SqlQuery<CheckWhenAPICall>("CheckWhenAPICall2 @apiNumber,@ip,@host, @credits, @type, @searchKeyword, @service", apinumberPar,hostPar, namePar, creditsPar, typePar, serchKey, servicePar);
-
-                foreach (var item in tRes)
-                {
-                    res = item.ReturnValue;
-                    break;
-                }
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("CheckWhenUserIsAuthenticated2", dbConnection);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter("@return", System.Data.SqlDbType.Int);
+                param.Direction = System.Data.ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(param);
+                cmd.Parameters.Add(new SqlParameter("@userName", name));
+                cmd.Parameters.Add(new SqlParameter("@credits", credits));
+                cmd.Parameters.Add(new SqlParameter("@type", type));
+                cmd.Parameters.Add(new SqlParameter("@searchKeyword", searchKeyword));
+                cmd.Parameters.Add(new SqlParameter("@service", service));
+                cmd.ExecuteNonQuery();
+                result = Convert.ToInt32(param.Value);
             }
 
-            if (res == 1)
+            if (result == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsValidApiUser(string ip, string host, string apiNumber, int credits, string searchKeyword, string type, string service)
+        {
+            int result = 0;
+            using (SqlConnection dbConnection = new SqlConnection(connectionString))
+            {
+                dbConnection.Open();
+                SqlCommand cmd = new SqlCommand("CheckWhenAPICall2", dbConnection);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter("@return", System.Data.SqlDbType.Int);
+                param.Direction = System.Data.ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(param);
+                cmd.Parameters.Add(new SqlParameter("@ip", ip.TrimEnd()));
+                cmd.Parameters.Add(new SqlParameter("@credits", credits));
+                cmd.Parameters.Add(new SqlParameter("@apiNumber", apiNumber));
+                cmd.Parameters.Add(new SqlParameter("@host", host));
+                cmd.Parameters.Add(new SqlParameter("@type", type));
+                cmd.Parameters.Add(new SqlParameter("@searchKeyword", searchKeyword));
+                cmd.Parameters.Add(new SqlParameter("@service", service));
+                cmd.ExecuteNonQuery();
+                result = Convert.ToInt32(param.Value);
+            }
+
+            if(result == 1)
             {
                 return true;
             }
@@ -77,8 +104,9 @@
 
         public bool CheckTemporaryUser(string ip, int num)
         {
-            int res = 0;
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            //var result = db.CheckTemporaryUser(ip, num);
+
+            int result = 0;
 
             using (SqlConnection dbConnection = new SqlConnection(connectionString))
             {
@@ -91,10 +119,10 @@
                 cmd.Parameters.Add(new SqlParameter("@ip", ip.TrimEnd()));
                 cmd.Parameters.Add(new SqlParameter("@num", num));
                 cmd.ExecuteNonQuery();
-                res = Convert.ToInt32(param.Value);
+                result = Convert.ToInt32(param.Value);
             }
 
-            if (res == 1)
+            if (result == 1)
             {
                 return true;
             }

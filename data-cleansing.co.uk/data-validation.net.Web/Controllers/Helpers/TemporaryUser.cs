@@ -1,4 +1,4 @@
-﻿using data_validation.net.Web.Models.DataCleansing;
+﻿using data_validation.net.Web.ViewModels.DataCleansing;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
